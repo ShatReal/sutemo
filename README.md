@@ -12,8 +12,6 @@ This is the source code for https://emily2.itch.io/sutemos-character-creator
 > 
 > Thank you.
 
-I've also exported the project to different platforms as well. Note that I haven't tested the Mac and Linux exports, however.
-
 **Credits & Links:**
 
 - [Sutemo's Female Characters](https://sutemo.itch.io/female-character)
