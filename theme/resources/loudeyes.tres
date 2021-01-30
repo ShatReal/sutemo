@@ -1,0 +1,204 @@
+[gd_resource type="Theme" load_steps=17 format=2]
+
+[ext_resource path="res://theme/fonts/roboto.tres" type="DynamicFont" id=1]
+[ext_resource path="res://theme/resources/panel.tres" type="StyleBox" id=2]
+[ext_resource path="res://theme/images/radio_unchecked.png" type="Texture" id=3]
+[ext_resource path="res://theme/images/radio_checked.png" type="Texture" id=4]
+[ext_resource path="res://theme/images/arrow.png" type="Texture" id=5]
+[ext_resource path="res://theme/resources/button_normal.tres" type="StyleBox" id=6]
+[ext_resource path="res://theme/resources/button_pressed.tres" type="StyleBox" id=7]
+[ext_resource path="res://theme/resources/button_hover.tres" type="StyleBox" id=8]
+[ext_resource path="res://theme/fonts/roboto_bold.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.113725, 0.133333, 0.305882, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 3
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.988235, 0.976471, 0.988235, 0.85098 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 30.0
+expand_margin_bottom = 10.0
+
+[resource]
+default_font = ExtResource( 1 )
+Button/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.270588, 0.321569, 0.490196, 1 )
+Button/colors/font_color_pressed = Color( 0.270588, 0.321569, 0.490196, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = SubResource( 1 )
+Button/styles/hover = ExtResource( 8 )
+Button/styles/normal = ExtResource( 6 )
+Button/styles/pressed = ExtResource( 7 )
+Label/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+LineEdit/colors/clear_button_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 0.270588, 0.321569, 0.490196, 1 )
+LineEdit/colors/cursor_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+LineEdit/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+LineEdit/colors/font_color_selected = Color( 1, 1, 1, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0.88, 0.88, 0.88, 0.5 )
+LineEdit/colors/selection_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource( 2 )
+LineEdit/styles/normal = ExtResource( 6 )
+LineEdit/styles/read_only = null
+LinkButton/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+LinkButton/colors/font_color_hover = Color( 0.270588, 0.321569, 0.490196, 1 )
+LinkButton/colors/font_color_pressed = Color( 0.270588, 0.321569, 0.490196, 1 )
+LinkButton/constants/underline_spacing = 2
+LinkButton/fonts/font = null
+LinkButton/styles/focus = null
+OptionButton/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+OptionButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+OptionButton/colors/font_color_hover = Color( 0.270588, 0.321569, 0.490196, 1 )
+OptionButton/colors/font_color_pressed = Color( 0.270588, 0.321569, 0.490196, 1 )
+OptionButton/constants/arrow_margin = 10
+OptionButton/constants/hseparation = 2
+OptionButton/fonts/font = null
+OptionButton/icons/arrow = ExtResource( 5 )
+OptionButton/styles/disabled = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/normal = null
+OptionButton/styles/pressed = null
+Panel/styles/panel = ExtResource( 2 )
+PopupMenu/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
+PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
+PopupMenu/colors/font_color_hover = Color( 0.270588, 0.321569, 0.490196, 1 )
+PopupMenu/constants/hseparation = 4
+PopupMenu/constants/vseparation = 18
+PopupMenu/fonts/font = null
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = ExtResource( 4 )
+PopupMenu/icons/radio_unchecked = ExtResource( 3 )
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = null
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = ExtResource( 2 )
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+PopupPanel/styles/panel = ExtResource( 2 )
+RichTextLabel/colors/default_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+RichTextLabel/colors/font_color_selected = Color( 1, 1, 1, 1 )
+RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+RichTextLabel/colors/selection_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/shadow_as_outline = 0
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/table_hseparation = 3
+RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/fonts/bold_font = SubResource( 3 )
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = null
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = null
+Tree/colors/custom_button_font_highlight = Color( 0.270588, 0.321569, 0.490196, 1 )
+Tree/colors/drop_position_color = Color( 1, 0.3, 0.2, 1 )
+Tree/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+Tree/colors/font_color_selected = Color( 0.270588, 0.321569, 0.490196, 1 )
+Tree/colors/guide_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+Tree/colors/relationship_line_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+Tree/colors/title_button_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+Tree/constants/button_margin = 4
+Tree/constants/draw_guides = 1
+Tree/constants/draw_relationship_lines = 0
+Tree/constants/hseparation = 4
+Tree/constants/item_margin = 12
+Tree/constants/scroll_border = 4
+Tree/constants/scroll_speed = 12
+Tree/constants/vseparation = 18
+Tree/fonts/font = null
+Tree/fonts/title_button_font = null
+Tree/icons/arrow = null
+Tree/icons/arrow_collapsed = null
+Tree/icons/checked = null
+Tree/icons/select_arrow = null
+Tree/icons/unchecked = null
+Tree/icons/updown = null
+Tree/styles/bg = ExtResource( 6 )
+Tree/styles/bg_focus = SubResource( 4 )
+Tree/styles/button_pressed = ExtResource( 7 )
+Tree/styles/cursor = null
+Tree/styles/cursor_unfocused = null
+Tree/styles/custom_button = null
+Tree/styles/custom_button_hover = null
+Tree/styles/custom_button_pressed = null
+Tree/styles/selected = null
+Tree/styles/selected_focus = null
+Tree/styles/title_button_hover = null
+Tree/styles/title_button_normal = null
+Tree/styles/title_button_pressed = null
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = ExtResource( 6 )
+VScrollBar/styles/grabber_highlight = ExtResource( 8 )
+VScrollBar/styles/grabber_pressed = ExtResource( 7 )
+VScrollBar/styles/scroll = SubResource( 5 )
+VScrollBar/styles/scroll_focus = SubResource( 6 )
+WindowDialog/colors/title_color = Color( 0.270588, 0.321569, 0.490196, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 20
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = null
+WindowDialog/icons/close_highlight = null
+WindowDialog/styles/panel = SubResource( 7 )
