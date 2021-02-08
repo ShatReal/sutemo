@@ -1,7 +1,7 @@
-[gd_resource type="Theme" load_steps=17 format=2]
+[gd_resource type="Theme" load_steps=30 format=2]
 
 [ext_resource path="res://theme/fonts/roboto.tres" type="DynamicFont" id=1]
-[ext_resource path="res://theme/resources/panel.tres" type="StyleBox" id=2]
+[ext_resource path="res://theme/resources/panel_container.tres" type="StyleBox" id=2]
 [ext_resource path="res://theme/images/radio_unchecked.png" type="Texture" id=3]
 [ext_resource path="res://theme/images/radio_checked.png" type="Texture" id=4]
 [ext_resource path="res://theme/images/arrow.png" type="Texture" id=5]
@@ -9,8 +9,48 @@
 [ext_resource path="res://theme/resources/button_pressed.tres" type="StyleBox" id=7]
 [ext_resource path="res://theme/resources/button_hover.tres" type="StyleBox" id=8]
 [ext_resource path="res://theme/fonts/roboto_bold.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://theme/images/grabber.png" type="Texture" id=10]
+[ext_resource path="res://theme/images/grabber_highlighted.png" type="Texture" id=11]
+[ext_resource path="res://theme/images/icon_color_pick.png" type="Texture" id=12]
+[ext_resource path="res://theme/images/icon_add.png" type="Texture" id=13]
+[ext_resource path="res://theme/images/option_arrow.png" type="Texture" id=14]
+[ext_resource path="res://theme/images/toggle_off.png" type="Texture" id=15]
+[ext_resource path="res://theme/images/toggle_on.png" type="Texture" id=16]
+[ext_resource path="res://theme/images/toggle_off_disabled.png" type="Texture" id=17]
+[ext_resource path="res://theme/images/toggle_on_disabled.png" type="Texture" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxLine" id=11]
+color = Color( 0.94902, 0.454902, 0.72549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.921569, 0.670588, 0.827451, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id=10]
+content_margin_left = 3.0
+content_margin_right = 3.0
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color( 0.568627, 0.0980392, 0.317647, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 4
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -70,6 +110,30 @@ Button/styles/focus = SubResource( 1 )
 Button/styles/hover = ExtResource( 8 )
 Button/styles/normal = ExtResource( 6 )
 Button/styles/pressed = ExtResource( 7 )
+CheckButton/icons/off = ExtResource( 15 )
+CheckButton/icons/off_disabled = ExtResource( 17 )
+CheckButton/icons/on = ExtResource( 16 )
+CheckButton/icons/on_disabled = ExtResource( 18 )
+ColorPicker/constants/h_width = 30
+ColorPicker/constants/label_width = 10
+ColorPicker/constants/margin = 4
+ColorPicker/constants/sv_height = 256
+ColorPicker/constants/sv_width = 256
+ColorPicker/icons/add_preset = ExtResource( 13 )
+ColorPicker/icons/color_hue = null
+ColorPicker/icons/color_sample = null
+ColorPicker/icons/overbright_indicator = null
+ColorPicker/icons/preset_bg = null
+ColorPicker/icons/screen_picker = ExtResource( 12 )
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = SubResource( 11 )
+HSlider/icons/grabber = ExtResource( 10 )
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = ExtResource( 11 )
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource( 8 )
+HSlider/styles/grabber_area_highlight = SubResource( 9 )
+HSlider/styles/slider = SubResource( 10 )
 Label/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
 Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
@@ -111,7 +175,7 @@ OptionButton/styles/focus = null
 OptionButton/styles/hover = null
 OptionButton/styles/normal = null
 OptionButton/styles/pressed = null
-Panel/styles/panel = ExtResource( 2 )
+PanelContainer/styles/panel = ExtResource( 2 )
 PopupMenu/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
 PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
 PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
@@ -148,6 +212,7 @@ RichTextLabel/fonts/mono_font = null
 RichTextLabel/fonts/normal_font = null
 RichTextLabel/styles/focus = null
 RichTextLabel/styles/normal = null
+SpinBox/icons/updown = ExtResource( 14 )
 Tree/colors/custom_button_font_highlight = Color( 0.270588, 0.321569, 0.490196, 1 )
 Tree/colors/drop_position_color = Color( 1, 0.3, 0.2, 1 )
 Tree/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )

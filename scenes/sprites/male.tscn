@@ -1,0 +1,227 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/male/base/00_base/00_base.png" type="Texture" id=1]
+
+[node name="Male" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HairsBehind" type="TextureRect" parent="." groups=[
+"hair_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skin" type="TextureRect" parent="HairsBehind" groups=[
+"skin_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+
+[node name="Static" type="TextureRect" parent="HairsBehind"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+
+[node name="Base" type="TextureRect" parent="." groups=[
+"skin_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeadphonesBase" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Costumes" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skin" type="TextureRect" parent="Costumes" groups=[
+"skin_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Static" type="TextureRect" parent="Costumes"]
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HairsFront" type="TextureRect" parent="." groups=[
+"hair_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skin" type="TextureRect" parent="HairsFront" groups=[
+"skin_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Static" type="TextureRect" parent="HairsFront"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+
+[node name="Expressions" type="TextureRect" parent="." groups=[
+"eye_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skin" type="TextureRect" parent="Expressions" groups=[
+"skin_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Static" type="TextureRect" parent="Expressions"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Glasses" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EyeCover" type="TextureRect" parent="." groups=[
+"hair_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skin" type="TextureRect" parent="EyeCover" groups=[
+"skin_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Static" type="TextureRect" parent="EyeCover"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeadphonesUp" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sweatdrop" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skin" type="TextureRect" parent="Sweatdrop" groups=[
+"skin_male",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Static" type="TextureRect" parent="Sweatdrop"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
