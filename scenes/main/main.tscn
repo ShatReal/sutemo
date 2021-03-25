@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/main/preview.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/items/item_scroll.tscn" type="PackedScene" id=2]
 [ext_resource path="res://theme/images/background.png" type="Texture" id=3]
 [ext_resource path="res://scenes/main/save_image.gd" type="Script" id=4]
 [ext_resource path="res://scenes/main/main.gd" type="Script" id=5]
@@ -86,24 +87,10 @@ margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 text = "Gender Options"
 
-[node name="ItemOptions" type="MarginContainer" parent="HBox/MarCon/Options/HBox/Dropdowns"]
+[node name="ItemOptions" type="OptionButton" parent="HBox/MarCon/Options/HBox/Dropdowns"]
 margin_top = 69.0
 margin_right = 307.0
 margin_bottom = 134.0
-
-[node name="Female" type="OptionButton" parent="HBox/MarCon/Options/HBox/Dropdowns/ItemOptions"]
-margin_right = 307.0
-margin_bottom = 65.0
-mouse_default_cursor_shape = 2
-text = "Item Options"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Male" type="OptionButton" parent="HBox/MarCon/Options/HBox/Dropdowns/ItemOptions"]
-visible = false
-margin_right = 307.0
-margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 text = "Item Options"
 __meta__ = {
@@ -221,25 +208,22 @@ margin_right = 618.0
 margin_bottom = 627.0
 size_flags_vertical = 3
 
-[node name="Female" type="Control" parent="HBox/MarCon/Options/ItemPanel"]
+[node name="Female" parent="HBox/MarCon/Options/ItemPanel" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 608.0
 margin_bottom = 475.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Male" type="Control" parent="HBox/MarCon/Options/ItemPanel"]
+[node name="Male" parent="HBox/MarCon/Options/ItemPanel" instance=ExtResource( 2 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 608.0
 margin_bottom = 475.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Buttons" type="HBoxContainer" parent="HBox/MarCon/Options"]
 margin_top = 635.0
@@ -427,8 +411,12 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="item_selected" from="HBox/MarCon/Options/HBox/Dropdowns/GenderOptions" to="." method="_on_gender_selected"]
+[connection signal="item_selected" from="HBox/MarCon/Options/HBox/Dropdowns/GenderOptions" to="." method="on_gender_selected"]
+[connection signal="item_selected" from="HBox/MarCon/Options/HBox/Dropdowns/ItemOptions" to="." method="on_item_option_selected"]
 [connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Skin/PanelContainer/ColorRect" to="." method="_on_color_gui_input" binds= [ 0 ]]
 [connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Eye/PanelContainer/ColorRect" to="." method="_on_color_gui_input" binds= [ 1 ]]
 [connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Hair/PanelContainer/ColorRect" to="." method="_on_color_gui_input" binds= [ 2 ]]
 [connection signal="pressed" from="HBox/MarCon/Options/Buttons/Clear" to="." method="_on_clear_all_pressed"]
+[connection signal="color_changed" from="ColorPop/ColorPicker" to="." method="on_color_picker_color_changed"]
+[connection signal="meta_clicked" from="CreditsPop/HBox/UseInfo" to="." method="on_meta_clicked"]
+[connection signal="meta_clicked" from="CreditsPop/HBox/Credits" to="." method="on_meta_clicked"]

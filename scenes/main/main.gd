@@ -1,142 +1,103 @@
 extends Control
 
 
-const HEADPHONES_UP: StreamTexture = preload("res://sprites/male/headphones_up/00_headphones_up/00_headphones_up.png")
-const HEADPHONES_BASE: StreamTexture = preload("res://sprites/male/headphones_base/00_headphones_base/00_headphones_base.png")
-const ItemScroll: PackedScene = preload("res://scenes/items/item_scroll.tscn")
-const NUM_GENDERS: int = 2
-const COLOR_ARR: Array = ["skin", "eye", "hair"]
+const NUM_GENDERS := 2
+const COLOR_ARR := ["skin", "eye", "hair"]
+const IMG_SIZE := Vector2(1_000, 1_200)
+const OPTION_GROUPS := {
+	"back_hair": ["back_hair"],
+	"blushes": ["blushes"],
+	"neck": ["neck"],
+	"outfits": ["outfits"],
+	"front_hair": ["front_hair", "eye_cover_hair"],
+	"eyes": ["eyes"],
+	"mouths": ["mouths"],
+	"glasses": ["glasses"],
+	"accessories": ["headphones_base", "headphones_up", "accessories"],
+}
 
-var gender_info: Array = [
-	{
-		"gender": "female",
-		"curr_option": 0,
-		"img_size": Vector2(1011, 1145),
-		"options":
-			{
-				"accessories": ["flower", "choker", "glasses"],
-				"expressions": ["expressions"],
-				"hairs_front": ["hairs_front"],
-				"costumes": ["costumes"],
-				"blushes": ["blushes"],
-				"hairs_behind": ["hairs_behind"],
-			},
-		"groups": ["flower", "choker", "glasses", "expressions", "hairs_front", "costumes", "blushes", "hairs_behind"],
-		"layers": {},
-		"button_groups": {},
-		"colors": {
-			"skin": Color("#fff9df"),
-			"eye": Color("#ff8fcd"),
-			"hair": Color("#eae4e6"),
-		},
-	},
-	{
-		"gender": "male",
-		"curr_option": 0,
-		"img_size": Vector2(1158, 1287),
-		"options":
-			{
-				"accessories": ["sweatdrop", "headphones_up", "glasses", "headphones_base"],
-				"expressions": ["expressions"],
-				"hairs_front": ["eye_cover", "hairs_front"],
-				"costumes": ["costumes"],
-				"hairs_behind": ["hairs_behind"],
-			},
-		"groups": ["sweatdrop", "headphones_up", "eye_cover", "glasses", "expressions", "hairs_front", "costumes", "headphones_base", "hairs_behind"],
-		"layers": {},
-		"button_groups": {},
-		"colors": {
-			"skin": Color("#fff9df"),
-			"eye": Color("#ff8fcd"),
-			"hair": Color("#eae4e6"),
-		},
-	},
-]
 var cur_gender: int = 0
+var cur_option := 0
 var cur_color: int = 0
+var layers := {}
+var button_groups := {}
+var cur_colors := {
+	"skin": Color("#fff9df"),
+	"eye": Color("#ff8fcd"),
+	"hair": Color("#eae4e6"),
+}
 var thread: Thread
 
-onready var save_image: Node = $SaveImage
-onready var sprites: Control = $HBox/Sprites
+onready var save_image := $SaveImage
+onready var preview := $HBox/Preview
 onready var wait_pop: PopupPanel = $WaitPop
 onready var wait_label: Label = $WaitPop/WaitLabel
 onready var item_panel: PanelContainer = $HBox/MarCon/Options/ItemPanel
-onready var item_options: MarginContainer = $HBox/MarCon/Options/HBox/Dropdowns/ItemOptions
+onready var item_options := $HBox/MarCon/Options/HBox/Dropdowns/ItemOptions
 onready var color_box: HBoxContainer = $HBox/MarCon/Options/HBox/ColorPanel/ColorBox
 onready var color_pop: PopupPanel = $ColorPop
 
 
 func _ready() -> void:
-	for i in range(NUM_GENDERS):
-		var children: Array = sprites.get_child(i).get_children()
-		children.remove(1) # Removes the Base TextureRect
-		children.invert()
-		var curr_info: Dictionary = gender_info[i]
-		for j in range(len(children)):
-			var curr_group: String = curr_info.groups[j]
-			curr_info.layers[curr_group] = children[j]
-			if curr_group == "hairs_front" and i: # Male EyeCover is same group as HairsFront
-				curr_info.button_groups[curr_group] = curr_info.button_groups["eye_cover"]
-			elif curr_group == "headphones_base": # Neither icon is shown at any rate
-				curr_info.button_groups[curr_group] = curr_info.button_groups["headphones_up"]
-			else:
-				curr_info.button_groups[curr_group] = ButtonGroup.new()
-	
-	var gender_options: OptionButton = $HBox/MarCon/Options/HBox/Dropdowns/GenderOptions
-	gender_options.add_item("Female")
-	gender_options.add_item("Male")
-	
-	item_options.get_child(0).show()
-	item_options.get_child(1).hide()
-	for i in range(NUM_GENDERS):
-		var child: OptionButton = item_options.get_child(i)
-		child.connect("item_selected", self, "_on_item_selected")
-		for option in gender_info[i].options:
-			child.add_item(option.capitalize())
-	
-	for cur_gender_arr in gender_info:
-		for key in cur_gender_arr.colors:
-			var color = cur_gender_arr.colors[key]
-			color_box.get_node("%s/PanelContainer/ColorRect" % key.capitalize()).color = color
-			for node in get_tree().get_nodes_in_group(key + "_" + cur_gender_arr.gender):
-				node.self_modulate = color
+	determine_save_method()
+	set_gender_option_button()
+	set_item_option_button()
+	modulate_sprites()
+	connect_credits()
+	make_items()
+	request_perms_android()
 
-	var save: Button = $HBox/MarCon/Options/Buttons/Save
-	var file_dialog: FileDialog = $FileDialog
+
+func determine_save_method():
+	var save := $HBox/MarCon/Options/Buttons/Save
 	if OS.get_name() == "HTML5" and OS.has_feature("JavaScript") or OS.get_name() == "Android":
-		save.connect("pressed", self, "_save_file")
+		save.connect("pressed", self, "save_file")
 	else:
+		var file_dialog := $FileDialog
 		save.connect("pressed", file_dialog, "popup_centered")
-		file_dialog.connect("file_selected", self, "_save_file")
+		file_dialog.connect("file_selected", self, "save_file")
 		file_dialog.current_dir = OS.get_system_dir(OS.SYSTEM_DIR_PICTURES)
+		
+
+func set_gender_option_button():
+	var g := $HBox/MarCon/Options/HBox/Dropdowns/GenderOptions
+	g.add_item("Female")
+	g.add_item("Male")
 	
-	var credits: Button = $HBox/MarCon/Options/Buttons/Credits
-	var credits_pop: PopupPanel = $CreditsPop
+
+func set_item_option_button():
+	for option in OPTION_GROUPS:
+		item_options.add_item(option.capitalize())
+	
+
+func modulate_sprites():
+	for color_key in cur_colors:
+		color_box.get_node("%s/PanelContainer/ColorRect" % color_key.capitalize()).color = cur_colors[color_key]
+		for node in get_tree().get_nodes_in_group(color_key):
+			node.self_modulate = cur_colors[color_key]
+
+
+func connect_credits():
+	var credits := $HBox/MarCon/Options/Buttons/Credits
+	var credits_pop := $CreditsPop
 	credits.connect("pressed", credits_pop, "popup_centered")
-	credits_pop.get_node("HBox/UseInfo").connect("meta_clicked", self, "_on_meta_clicked")
-	credits_pop.get_node("HBox/Credits").connect("meta_clicked", self, "_on_meta_clicked")
+
+
+func make_items():
+	for i in NUM_GENDERS:
+		for option in OPTION_GROUPS:
+			item_panel.get_child(i).make_icons(i, option)
 	
-	sprites.get_child(0).show()
-	sprites.get_child(1).hide()
-	
-	for i in range(NUM_GENDERS):
-		for key in gender_info[i].options:
-			var curr_scroll: ScrollContainer = ItemScroll.instance()
-			item_panel.get_child(i).add_child(curr_scroll)
-			curr_scroll.make_icons(i, key)
-	
-	item_panel.get_child(0).get_child(0).show()
-	
-	color_pop.get_child(0).connect("color_changed", self, "_on_color_changed")
-	
+
+func request_perms_android():
 	if OS.get_name() == "Android":
-		var perms: PoolStringArray = OS.get_granted_permissions()
+		var perms := OS.get_granted_permissions()
 		if not "android.permission.READ_EXTERNAL_STORAGE" in perms \
 		or not "android.permission.WRITE_EXTERNAL_STORAGE" in perms:
 			OS.request_permissions()
 
 
-func save_finished(path:String) -> void:
+func save_finished(path:String):
 	if thread:
 		thread.wait_to_finish()
 	if OS.get_name() == "Android":
@@ -149,8 +110,8 @@ func save_finished(path:String) -> void:
 	wait_pop.hide()
 
 
-func _on_gender_selected(index:int) -> void:
-	item_panel.get_child(cur_gender).get_child(gender_info[cur_gender].curr_option).hide()
+func on_gender_selected(index:int):
+	item_panel.get_child(cur_gender).get_child(cur_option).hide()
 	cur_gender = index
 	if index:
 		sprites.get_child(0).hide()
@@ -167,7 +128,7 @@ func _on_gender_selected(index:int) -> void:
 		color_box.get_child(i).get_child(1).get_child(0).color = gender_info[cur_gender].colors[COLOR_ARR[i]]
 
 
-func _on_item_selected(index:int) -> void:
+func on_item_option_selected(index:int) -> void:
 	item_panel.get_child(cur_gender).get_child(gender_info[cur_gender].curr_option).hide()
 	gender_info[cur_gender].curr_option = index
 	item_panel.get_child(cur_gender).get_child(gender_info[cur_gender].curr_option).show()
@@ -180,7 +141,7 @@ func _on_color_gui_input(event:InputEvent, i:int) -> void:
 		color_pop.popup_centered()
 	
 
-func _on_color_changed(color:Color) -> void:
+func on_color_picker_color_changed(color:Color) -> void:
 	color_box.get_child(cur_color).get_child(1).get_child(0).color = color
 	gender_info[cur_gender].colors[COLOR_ARR[cur_color]] = color
 	for node in get_tree().get_nodes_in_group(COLOR_ARR[cur_color] + "_" + gender_info[cur_gender].gender):
@@ -238,5 +199,5 @@ func _save_file(path:String="") -> void:
 
 
 # In case the RichTextLabel url BBCode doesn't work
-func _on_meta_clicked(meta:String) -> void:
+func on_meta_clicked(meta:String) -> void:
 	OS.shell_open(meta)
