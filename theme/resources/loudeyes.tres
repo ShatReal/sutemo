@@ -61,13 +61,9 @@ font_data = ExtResource( 9 )
 [sub_resource type="StyleBoxEmpty" id=8]
 
 [sub_resource type="StyleBoxFlat" id=9]
-content_margin_left = 20.0
-content_margin_right = 20.0
+content_margin_left = 5.0
+content_margin_right = 5.0
 bg_color = Color( 0.270588, 0.321569, 0.490196, 1 )
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
 border_color = Color( 0.113725, 0.133333, 0.305882, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3

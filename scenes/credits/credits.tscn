@@ -1,0 +1,294 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://theme/fonts/the_bold_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://theme/resources/loudeyes.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/credits/links.tscn" type="PackedScene" id=3]
+[ext_resource path="res://icons/sutemo.png" type="Texture" id=4]
+[ext_resource path="res://icons/deviantart.png" type="Texture" id=5]
+[ext_resource path="res://icons/itchio.png" type="Texture" id=6]
+[ext_resource path="res://theme/images/divider.png" type="Texture" id=7]
+[ext_resource path="res://icons/ko-fi.png" type="Texture" id=8]
+[ext_resource path="res://icons/patreon.png" type="Texture" id=9]
+[ext_resource path="res://icons/loud_eyes.png" type="Texture" id=10]
+[ext_resource path="res://icons/twitter.png" type="Texture" id=11]
+[ext_resource path="res://icons/sea_bun.png" type="Texture" id=12]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id=2]
+resource_local_to_scene = true
+content_margin_left = 10.0
+content_margin_right = 30.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id=3]
+resource_local_to_scene = true
+content_margin_left = 30.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id=4]
+resource_local_to_scene = true
+content_margin_left = 10.0
+content_margin_right = 30.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[node name="Credits" type="PopupPanel"]
+margin_right = 700.0
+margin_bottom = 560.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBox"]
+margin_right = 680.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Label" type="Label" parent="HBox/VBoxContainer"]
+margin_right = 680.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Credits & Info"
+align = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBox/VBoxContainer"]
+margin_top = 32.0
+margin_right = 680.0
+margin_bottom = 540.0
+size_flags_vertical = 3
+custom_styles/bg = SubResource( 1 )
+
+[node name="Credits" type="VBoxContainer" parent="HBox/VBoxContainer/ScrollContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 670.0
+margin_bottom = 760.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
+margin_right = 650.0
+margin_bottom = 128.0
+custom_constants/separation = 16
+
+[node name="Links" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer" instance=ExtResource( 3 )]
+margin_right = 288.0
+margin_bottom = 128.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="VBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links" index="0"]
+margin_right = 258.0
+margin_bottom = 118.0
+
+[node name="Label" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer" index="0"]
+margin_right = 248.0
+margin_bottom = 29.0
+text = "Code by Exuin"
+
+[node name="HBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer" index="1"]
+margin_top = 33.0
+margin_right = 248.0
+margin_bottom = 105.0
+
+[node name="LinkButton" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 72.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 6 )
+
+[node name="LinkButton2" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer/HBoxContainer" index="1"]
+margin_left = 88.0
+margin_right = 160.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 11 )
+
+[node name="LinkButton3" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer/HBoxContainer" index="2"]
+margin_left = 176.0
+margin_right = 248.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer"]
+margin_left = 304.0
+margin_right = 432.0
+margin_bottom = 128.0
+texture = ExtResource( 12 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
+margin_top = 144.0
+margin_right = 650.0
+margin_bottom = 272.0
+custom_constants/separation = 16
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2"]
+margin_left = 218.0
+margin_right = 346.0
+margin_bottom = 128.0
+texture = ExtResource( 4 )
+
+[node name="Links" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2" instance=ExtResource( 3 )]
+margin_left = 362.0
+margin_right = 650.0
+margin_bottom = 128.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="VBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links" index="0"]
+margin_left = 30.0
+margin_right = 278.0
+margin_bottom = 118.0
+
+[node name="Label" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links/VBoxContainer" index="0"]
+margin_right = 248.0
+margin_bottom = 29.0
+text = "Artwork by Sutemo"
+align = 2
+
+[node name="HBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links/VBoxContainer" index="1"]
+margin_top = 33.0
+margin_right = 248.0
+margin_bottom = 105.0
+
+[node name="LinkButton" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 72.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 6 )
+
+[node name="LinkButton2" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links/VBoxContainer/HBoxContainer" index="1"]
+margin_left = 88.0
+margin_right = 160.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 8 )
+
+[node name="LinkButton3" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links/VBoxContainer/HBoxContainer" index="2"]
+margin_left = 176.0
+margin_right = 248.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 5 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
+margin_top = 288.0
+margin_right = 650.0
+margin_bottom = 416.0
+custom_constants/separation = 16
+
+[node name="Links" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3" instance=ExtResource( 3 )]
+margin_right = 288.0
+margin_bottom = 128.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="VBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links" index="0"]
+margin_right = 258.0
+margin_bottom = 118.0
+
+[node name="Label" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links/VBoxContainer" index="0"]
+margin_right = 248.0
+margin_bottom = 29.0
+text = "UI by LoudEyes"
+
+[node name="HBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links/VBoxContainer" index="1"]
+margin_top = 33.0
+margin_right = 248.0
+margin_bottom = 105.0
+
+[node name="LinkButton" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 72.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 6 )
+
+[node name="LinkButton2" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links/VBoxContainer/HBoxContainer" index="1"]
+margin_left = 88.0
+margin_right = 160.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 9 )
+
+[node name="LinkButton3" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links/VBoxContainer/HBoxContainer" index="2"]
+margin_left = 176.0
+margin_right = 248.0
+margin_bottom = 72.0
+texture_normal = ExtResource( 11 )
+
+[node name="TextureRect" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3"]
+margin_left = 304.0
+margin_right = 432.0
+margin_bottom = 128.0
+texture = ExtResource( 10 )
+
+[node name="Divider" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
+margin_left = 236.0
+margin_top = 432.0
+margin_right = 414.0
+margin_bottom = 462.0
+size_flags_horizontal = 4
+texture = ExtResource( 7 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
+margin_top = 478.0
+margin_right = 650.0
+margin_bottom = 568.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "[url=https://github.com/Pukkah/HTML5-File-Exchange-for-Godot]HTML5 File Exchange for Godot[/url] by [url=https://github.com/Pukkah]laame[/url] is licensed under [url=https://opensource.org/licenses/MIT]MIT[/url].
+Gender symbols by [url=https://twemoji.twitter.com/]Twemoji[/url] are licensed under [url=https://creativecommons.org/licenses/by/4.0/]CC BY 4.0[/url]."
+text = "HTML5 File Exchange for Godot by laame is licensed under MIT.
+Gender symbols by Twemoji are licensed under CC BY 4.0."
+fit_content_height = true
+
+[node name="Divider2" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
+margin_left = 236.0
+margin_top = 584.0
+margin_right = 414.0
+margin_bottom = 614.0
+size_flags_horizontal = 4
+texture = ExtResource( 7 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
+margin_top = 630.0
+margin_right = 650.0
+margin_bottom = 750.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "You are free to use and modify any images that you make with this tool in any way that you want. Commercial use is fine as long as you are not selling the images by themselves. You can credit Sutemo for the artwork."
+text = "You are free to use and modify any images that you make with this tool in any way that you want. Commercial use is fine as long as you are not selling the images by themselves. You can credit Sutemo for the artwork."
+fit_content_height = true
+
+[editable path="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links"]
+
+[editable path="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links"]
+
+[editable path="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links"]

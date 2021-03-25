@@ -1,13 +1,30 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/main/preview.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/items/item_scroll.tscn" type="PackedScene" id=2]
 [ext_resource path="res://theme/images/background.png" type="Texture" id=3]
-[ext_resource path="res://scenes/main/save_image.gd" type="Script" id=4]
+[ext_resource path="res://scenes/credits/credits.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/main/main.gd" type="Script" id=5]
-[ext_resource path="res://theme/resources/color_panel.tres" type="StyleBox" id=6]
+[ext_resource path="res://theme/images/venus.png" type="Texture" id=6]
 [ext_resource path="res://theme/resources/loudeyes.tres" type="Theme" id=7]
-[ext_resource path="res://scenes/color_picker/color_picker.tscn" type="PackedScene" id=8]
+[ext_resource path="res://theme/images/mars.png" type="Texture" id=8]
+[ext_resource path="res://scenes/main/save_image.gd" type="Script" id=9]
+[ext_resource path="res://scenes/main/gender_group.tres" type="ButtonGroup" id=10]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.988235, 0.976471, 0.988235, 0.784314 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -20,7 +37,7 @@ __meta__ = {
 }
 
 [node name="SaveImage" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -74,6 +91,7 @@ custom_constants/separation = 8
 [node name="HBox" type="HBoxContainer" parent="HBox/MarCon/Options"]
 margin_right = 618.0
 margin_bottom = 134.0
+size_flags_vertical = 3
 
 [node name="Dropdowns" type="VBoxContainer" parent="HBox/MarCon/Options/HBox"]
 margin_right = 307.0
@@ -81,11 +99,32 @@ margin_bottom = 134.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GenderOptions" type="OptionButton" parent="HBox/MarCon/Options/HBox/Dropdowns"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/MarCon/Options/HBox/Dropdowns"]
 margin_right = 307.0
 margin_bottom = 65.0
-mouse_default_cursor_shape = 2
-text = "Gender Options"
+size_flags_vertical = 3
+
+[node name="Female" type="Button" parent="HBox/MarCon/Options/HBox/Dropdowns/HBoxContainer"]
+margin_right = 151.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+toggle_mode = true
+pressed = true
+group = ExtResource( 10 )
+text = "Female"
+icon = ExtResource( 6 )
+expand_icon = true
+
+[node name="Male" type="Button" parent="HBox/MarCon/Options/HBox/Dropdowns/HBoxContainer"]
+margin_left = 155.0
+margin_right = 307.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
+toggle_mode = true
+group = ExtResource( 10 )
+text = "Male"
+icon = ExtResource( 8 )
+expand_icon = true
 
 [node name="ItemOptions" type="OptionButton" parent="HBox/MarCon/Options/HBox/Dropdowns"]
 margin_top = 69.0
@@ -122,20 +161,10 @@ margin_bottom = 29.0
 text = "Skin"
 align = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Skin"]
+[node name="ColorRect" type="ColorRect" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Skin"]
 margin_top = 33.0
 margin_right = 93.0
 margin_bottom = 114.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = ExtResource( 6 )
-
-[node name="ColorRect" type="ColorRect" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Skin/PanelContainer"]
-show_behind_parent = true
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 90.0
-margin_bottom = 78.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -153,20 +182,10 @@ margin_bottom = 29.0
 text = "Eye"
 align = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Eye"]
+[node name="ColorRect" type="ColorRect" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Eye"]
 margin_top = 33.0
 margin_right = 93.0
 margin_bottom = 114.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = ExtResource( 6 )
-
-[node name="ColorRect" type="ColorRect" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Eye/PanelContainer"]
-show_behind_parent = true
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 90.0
-margin_bottom = 78.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -184,46 +203,21 @@ margin_bottom = 29.0
 text = "Hair"
 align = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Hair"]
+[node name="ColorRect" type="ColorRect" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Hair"]
 margin_top = 33.0
 margin_right = 93.0
 margin_bottom = 114.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = ExtResource( 6 )
-
-[node name="ColorRect" type="ColorRect" parent="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Hair/PanelContainer"]
-show_behind_parent = true
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 90.0
-margin_bottom = 78.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ItemPanel" type="PanelContainer" parent="HBox/MarCon/Options"]
+[node name="ItemScroll" type="ScrollContainer" parent="HBox/MarCon/Options"]
 margin_top = 142.0
 margin_right = 618.0
 margin_bottom = 627.0
 size_flags_vertical = 3
-
-[node name="Female" parent="HBox/MarCon/Options/ItemPanel" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 608.0
-margin_bottom = 475.0
-
-[node name="Male" parent="HBox/MarCon/Options/ItemPanel" instance=ExtResource( 2 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 608.0
-margin_bottom = 475.0
+size_flags_stretch_ratio = 4.0
+custom_styles/bg = SubResource( 2 )
 
 [node name="Buttons" type="HBoxContainer" parent="HBox/MarCon/Options"]
 margin_top = 635.0
@@ -253,23 +247,9 @@ mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Credits & Info"
 
-[node name="ColorPop" type="PopupPanel" parent="."]
-margin_right = 363.0
-margin_bottom = 533.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorPicker" parent="ColorPop" instance=ExtResource( 8 )]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 353.0
-margin_bottom = 523.0
-
 [node name="FileDialog" type="FileDialog" parent="."]
-margin_right = 536.0
-margin_bottom = 276.0
-rect_min_size = Vector2( 960, 540 )
+margin_right = 700.0
+margin_bottom = 560.0
 window_title = "Save your character!"
 resizable = true
 access = 2
@@ -277,116 +257,11 @@ filters = PoolStringArray( "*.png" )
 current_dir = "/game_development/projects/sutemo"
 current_path = "/game_development/projects/sutemo/"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="CreditsPop" type="PopupPanel" parent="."]
-margin_right = 980.0
-margin_bottom = 560.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBox" type="HBoxContainer" parent="CreditsPop"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 970.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 960, 540 )
-custom_constants/separation = 30
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="UseInfo" type="RichTextLabel" parent="CreditsPop/HBox"]
-margin_right = 465.0
-margin_bottom = 540.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-bbcode_enabled = true
-bbcode_text = "[center][font=res://theme/fonts/the_bold_font.tres]Info[/font][/center]
-[b]Sutemo's asset use information[/b]
-This sprite can be used in personal or commercial projects. however you can't resell the sprite on its own.
-
-Feel free to ask me if you have any questions or suggestion for my next project. or you can drop by to my deviant art page [url]https://www.deviantart.com/stereo-mono[/url]
-
-You can also support me here [url]https://ko-fi.com/sutemo[/url]
-
-Thank you.
-
-[b]Licenses[/b]
-
-This game uses Godot Engine, available under the following license:
-
-Copyright (c) 2007-2020 Juan Linietsky, Ariel Manzur. Copyright (c) 2014-2020 Godot Engine contributors.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-Portions of this software are copyright © 2021 The FreeType Project (www.freetype.org). All rights reserved."
-text = "Info
-Sutemo's asset use information
-This sprite can be used in personal or commercial projects. however you can't resell the sprite on its own.
-
-Feel free to ask me if you have any questions or suggestion for my next project. or you can drop by to my deviant art page https://www.deviantart.com/stereo-mono
-
-You can also support me here https://ko-fi.com/sutemo
-
-Thank you.
-
-Licenses
-
-This game uses Godot Engine, available under the following license:
-
-Copyright (c) 2007-2020 Juan Linietsky, Ariel Manzur. Copyright (c) 2014-2020 Godot Engine contributors.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-Portions of this software are copyright © 2021 The FreeType Project (www.freetype.org). All rights reserved."
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Credits" type="RichTextLabel" parent="CreditsPop/HBox"]
-margin_left = 495.0
-margin_top = 89.0
-margin_right = 960.0
-margin_bottom = 450.0
-size_flags_horizontal = 3
-size_flags_vertical = 4
-bbcode_enabled = true
-bbcode_text = "[center][font=res://theme/fonts/the_bold_font.tres]Credits[/font][/center]
-[b]People[/b]
-[url=https://sutemo.itch.io/female-character]Sprite[/url] [url=https://sutemo.itch.io/male-character-sprite-for-visual-novel]Artwork[/url] - [url=https://sutemo.itch.io/]Sutemo[/url]
-[url=https://loudeyes.itch.io/dating-sim-ui-pack]GUI Artwork[/url] -[url=https://loudeyes.itch.io/]Lynda Mc Donald[/url]
-[url=https://emily2.itch.io/sutemos-character-creator]Programming[/url] - [url=https://emily2.itch.io/]Emily Yi[/url]
-[url=https://github.com/Pukkah/HTML5-File-Exchange-for-Godot]HTML5 File Exchange for Godot[/url] - [url=https://github.com/Pukkah]laame[/url]
-[b]Programs[/b]
-[url=https://krita.org/en/]Krita[/url]
-[url=https://godotengine.org/]Godot[/url]
-[b]Fonts[/b]
-[url=https://www.dafont.com/the-bold-font.font]The Bold Font[/url]
-[url=https://www.dafont.com/roboto.font]Roboto[/url]"
-text = "Credits
-People
-Sprite Artwork - Sutemo
-GUI Artwork -Lynda Mc Donald
-Programming - Emily Yi
-HTML5 File Exchange for Godot - laame
-Programs
-Krita
-Godot
-Fonts
-The Bold Font
-Roboto"
-fit_content_height = true
+[node name="Credits" parent="." instance=ExtResource( 4 )]
 
 [node name="WaitPop" type="PopupPanel" parent="."]
 margin_right = 480.0
@@ -394,29 +269,27 @@ margin_bottom = 270.0
 rect_min_size = Vector2( 480, 270 )
 popup_exclusive = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="WaitLabel" type="Label" parent="WaitPop"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
 text = "Generating image..."
 align = 1
 valign = 1
 autowrap = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-[connection signal="item_selected" from="HBox/MarCon/Options/HBox/Dropdowns/GenderOptions" to="." method="on_gender_selected"]
 [connection signal="item_selected" from="HBox/MarCon/Options/HBox/Dropdowns/ItemOptions" to="." method="on_item_option_selected"]
-[connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Skin/PanelContainer/ColorRect" to="." method="_on_color_gui_input" binds= [ 0 ]]
-[connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Eye/PanelContainer/ColorRect" to="." method="_on_color_gui_input" binds= [ 1 ]]
-[connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Hair/PanelContainer/ColorRect" to="." method="_on_color_gui_input" binds= [ 2 ]]
-[connection signal="pressed" from="HBox/MarCon/Options/Buttons/Clear" to="." method="_on_clear_all_pressed"]
-[connection signal="color_changed" from="ColorPop/ColorPicker" to="." method="on_color_picker_color_changed"]
-[connection signal="meta_clicked" from="CreditsPop/HBox/UseInfo" to="." method="on_meta_clicked"]
-[connection signal="meta_clicked" from="CreditsPop/HBox/Credits" to="." method="on_meta_clicked"]
+[connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Skin/ColorRect" to="." method="on_color_rect_gui_input" binds= [ 0 ]]
+[connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Eye/ColorRect" to="." method="on_color_rect_gui_input" binds= [ 1 ]]
+[connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Hair/ColorRect" to="." method="on_color_rect_gui_input" binds= [ 2 ]]
+[connection signal="pressed" from="HBox/MarCon/Options/Buttons/Clear" to="." method="on_clear_all_pressed"]

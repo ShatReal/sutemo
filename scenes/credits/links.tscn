@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/credits/link_button.tscn" type="PackedScene" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+resource_local_to_scene = true
+content_margin_left = 10.0
+content_margin_right = 30.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+
+[node name="PanelContainer" type="PanelContainer"]
+margin_right = 72.0
+margin_bottom = 38.0
+size_flags_horizontal = 0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 42.0
+margin_bottom = 28.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 32.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 32.0
+margin_bottom = 18.0
+custom_constants/separation = 16
+
+[node name="LinkButton" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="LinkButton2" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 16.0
+margin_right = 16.0
+margin_bottom = 0.0
+
+[node name="LinkButton3" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 32.0
+margin_right = 32.0
+margin_bottom = 0.0

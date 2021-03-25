@@ -13,3 +13,5 @@
 - Added the same options to both male and female - I only actually drew two new images lol
 - Filled in gaps in some images
 - Refactored a bunch of code
+    - Switched from using dictionaries to enums, which apparently are also dictionaries so I didn't reallly switch I guess
+- Made credits better
