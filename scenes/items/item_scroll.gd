@@ -5,8 +5,26 @@ const Item: PackedScene = preload("res://scenes/items/item.tscn")
 const PATH_START: String = "res://sprites/"
 const HP_PATH: String = "res://sprites/other/"
 const HP_FILE_PATH: String = "headphones_icon.png" # This one has to be set up manually
+
+var scrolling := false
+
 onready var main: Control = $"/root/Main"
 onready var grid: GridContainer = $ItemGrid
+onready var tween:Tween = $Tween
+
+
+func _gui_input(event):
+	if event is InputEventScreenDrag:
+		scrolling = true
+		tween.interpolate_property(
+			self,
+			"scroll_vertical",
+			scroll_vertical,
+			# Reverse scroll
+			scroll_vertical-event.speed.y,
+			0.5,
+			Tween.TRANS_SINE)
+		tween.start()
 
 
 func make_icons(gender:int, option:String) -> void:
@@ -51,3 +69,7 @@ func make_icons(gender:int, option:String) -> void:
 			curr_item = Item.instance()
 			grid.add_child(curr_item)
 			curr_item.init(gender, option, inner_dir_path, files, folder)
+
+
+func on_tween_all_completed():
+	scrolling = false

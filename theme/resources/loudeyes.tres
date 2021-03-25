@@ -21,10 +21,10 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxLine" id=11]
+[sub_resource type="StyleBoxLine" id=2]
 color = Color( 0.94902, 0.454902, 0.72549, 1 )
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
@@ -32,7 +32,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 4
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.921569, 0.670588, 0.827451, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
@@ -40,7 +40,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 4
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 3.0
@@ -52,15 +52,15 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 4
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=7]
 size = 24
 font_data = ExtResource( 9 )
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id=8]
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=9]
 content_margin_left = 20.0
 content_margin_right = 20.0
 bg_color = Color( 0.270588, 0.321569, 0.490196, 1 )
@@ -75,9 +75,9 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 3
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=11]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 10.0
@@ -126,14 +126,14 @@ ColorPicker/icons/overbright_indicator = null
 ColorPicker/icons/preset_bg = null
 ColorPicker/icons/screen_picker = ExtResource( 12 )
 HSeparator/constants/separation = 4
-HSeparator/styles/separator = SubResource( 11 )
+HSeparator/styles/separator = SubResource( 2 )
 HSlider/icons/grabber = ExtResource( 10 )
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = ExtResource( 11 )
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource( 8 )
-HSlider/styles/grabber_area_highlight = SubResource( 9 )
-HSlider/styles/slider = SubResource( 10 )
+HSlider/styles/grabber_area = SubResource( 3 )
+HSlider/styles/grabber_area_highlight = SubResource( 4 )
+HSlider/styles/slider = SubResource( 5 )
 Label/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
 Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
@@ -153,7 +153,7 @@ LineEdit/colors/selection_color = Color( 0.270588, 0.321569, 0.490196, 1 )
 LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
-LineEdit/styles/focus = SubResource( 2 )
+LineEdit/styles/focus = SubResource( 6 )
 LineEdit/styles/normal = ExtResource( 6 )
 LineEdit/styles/read_only = null
 LinkButton/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
@@ -205,7 +205,7 @@ RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1
 RichTextLabel/constants/table_hseparation = 3
 RichTextLabel/constants/table_vseparation = 3
-RichTextLabel/fonts/bold_font = SubResource( 3 )
+RichTextLabel/fonts/bold_font = SubResource( 7 )
 RichTextLabel/fonts/bold_italics_font = null
 RichTextLabel/fonts/italics_font = null
 RichTextLabel/fonts/mono_font = null
@@ -237,7 +237,7 @@ Tree/icons/select_arrow = null
 Tree/icons/unchecked = null
 Tree/icons/updown = null
 Tree/styles/bg = ExtResource( 6 )
-Tree/styles/bg_focus = SubResource( 4 )
+Tree/styles/bg_focus = SubResource( 8 )
 Tree/styles/button_pressed = ExtResource( 7 )
 Tree/styles/cursor = null
 Tree/styles/cursor_unfocused = null
@@ -256,8 +256,8 @@ VScrollBar/icons/increment_highlight = null
 VScrollBar/styles/grabber = ExtResource( 6 )
 VScrollBar/styles/grabber_highlight = ExtResource( 8 )
 VScrollBar/styles/grabber_pressed = ExtResource( 7 )
-VScrollBar/styles/scroll = SubResource( 5 )
-VScrollBar/styles/scroll_focus = SubResource( 6 )
+VScrollBar/styles/scroll = SubResource( 9 )
+VScrollBar/styles/scroll_focus = SubResource( 10 )
 WindowDialog/colors/title_color = Color( 0.270588, 0.321569, 0.490196, 1 )
 WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
@@ -266,4 +266,4 @@ WindowDialog/constants/title_height = 20
 WindowDialog/fonts/title_font = null
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 7 )
+WindowDialog/styles/panel = SubResource( 11 )

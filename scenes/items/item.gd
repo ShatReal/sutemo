@@ -12,6 +12,10 @@ onready var checkmark: TextureRect = $Icons/Checkmark
 onready var item_button: TextureButton = $Icons/ItemButton
 
 
+func _ready():
+	checkmark.hide()
+
+
 func init(gender:int, option:String, path:String, files:Array, folder:String) -> void:
 	var label_name: String = _path_to_label(path)
 	$Label.text = label_name

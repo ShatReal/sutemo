@@ -6,6 +6,7 @@ const HEADPHONES_BASE: StreamTexture = preload("res://sprites/male/headphones_ba
 const ItemScroll: PackedScene = preload("res://scenes/items/item_scroll.tscn")
 const NUM_GENDERS: int = 2
 const COLOR_ARR: Array = ["skin", "eye", "hair"]
+
 var gender_info: Array = [
 	{
 		"gender": "female",
@@ -24,9 +25,9 @@ var gender_info: Array = [
 		"layers": {},
 		"button_groups": {},
 		"colors": {
-			"skin": Color.white,
-			"eye": Color.white,
-			"hair": Color.white,
+			"skin": Color("#fff9df"),
+			"eye": Color("#ff8fcd"),
+			"hair": Color("#eae4e6"),
 		},
 	},
 	{
@@ -45,15 +46,16 @@ var gender_info: Array = [
 		"layers": {},
 		"button_groups": {},
 		"colors": {
-			"skin": Color.white,
-			"eye": Color.white,
-			"hair": Color.white,
+			"skin": Color("#fff9df"),
+			"eye": Color("#ff8fcd"),
+			"hair": Color("#eae4e6"),
 		},
 	},
 ]
 var cur_gender: int = 0
 var cur_color: int = 0
 var thread: Thread
+
 onready var save_image: Node = $SaveImage
 onready var sprites: Control = $HBox/Sprites
 onready var wait_pop: PopupPanel = $WaitPop
@@ -92,6 +94,13 @@ func _ready() -> void:
 		for option in gender_info[i].options:
 			child.add_item(option.capitalize())
 	
+	for cur_gender_arr in gender_info:
+		for key in cur_gender_arr.colors:
+			var color = cur_gender_arr.colors[key]
+			color_box.get_node("%s/PanelContainer/ColorRect" % key.capitalize()).color = color
+			for node in get_tree().get_nodes_in_group(key + "_" + cur_gender_arr.gender):
+				node.self_modulate = color
+
 	var save: Button = $HBox/MarCon/Options/Buttons/Save
 	var file_dialog: FileDialog = $FileDialog
 	if OS.get_name() == "HTML5" and OS.has_feature("JavaScript") or OS.get_name() == "Android":
@@ -117,6 +126,8 @@ func _ready() -> void:
 			curr_scroll.make_icons(i, key)
 	
 	item_panel.get_child(0).get_child(0).show()
+	
+	color_pop.get_child(0).connect("color_changed", self, "_on_color_changed")
 	
 	if OS.get_name() == "Android":
 		var perms: PoolStringArray = OS.get_granted_permissions()

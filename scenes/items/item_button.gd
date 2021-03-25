@@ -1,6 +1,9 @@
 extends TextureButton
 
 
+onready var parent_scroll := get_node("../../../..")
+
+
 # I want custom behavior for the buttons, so I have disabled the button and
 # overridden the _gui_input method.
 # Specifically, I want the buttons to be in a group and be toggled, but also I
@@ -8,5 +11,6 @@ extends TextureButton
 
 
 func _gui_input(event:InputEvent) -> void:
-	if event is InputEventMouseButton and not event.pressed and event.button_index == BUTTON_LEFT:
+	if event is InputEventMouseButton and not parent_scroll.scrolling\
+	and not event.pressed and event.button_index == BUTTON_LEFT:
 		pressed = not pressed

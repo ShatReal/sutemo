@@ -1,0 +1,51 @@
+[gd_scene format=2]
+
+[node name="PreviewLayer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Skin" type="TextureRect" parent="." groups=[
+"skin",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": "The part of the item that is color custom to skin color."
+}
+
+[node name="Base" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": "The main part of the item - may be color custom or may not be."
+}
+
+[node name="Highlight" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": "Partially transparent texture."
+}
+
+[node name="Static" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": "The part of the item that is not color custom no matter what."
+}
