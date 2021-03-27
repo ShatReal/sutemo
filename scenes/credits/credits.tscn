@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://theme/fonts/the_bold_font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://theme/resources/loudeyes.tres" type="Theme" id=2]
+[ext_resource path="res://theme/resources/loud_eyes.tres" type="Theme" id=2]
 [ext_resource path="res://scenes/credits/links.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icons/sutemo.png" type="Texture" id=4]
 [ext_resource path="res://icons/deviantart.png" type="Texture" id=5]
@@ -12,6 +12,7 @@
 [ext_resource path="res://icons/loud_eyes.png" type="Texture" id=10]
 [ext_resource path="res://icons/twitter.png" type="Texture" id=11]
 [ext_resource path="res://icons/sea_bun.png" type="Texture" id=12]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 10.0

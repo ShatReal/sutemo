@@ -1,16 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/main/preview.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/color_picker/color_picker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://theme/images/background.png" type="Texture" id=3]
 [ext_resource path="res://scenes/credits/credits.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/main/main.gd" type="Script" id=5]
 [ext_resource path="res://theme/images/venus.png" type="Texture" id=6]
-[ext_resource path="res://theme/resources/loudeyes.tres" type="Theme" id=7]
+[ext_resource path="res://theme/resources/loud_eyes.tres" type="Theme" id=7]
 [ext_resource path="res://theme/images/mars.png" type="Texture" id=8]
 [ext_resource path="res://scenes/main/save_image.gd" type="Script" id=9]
 [ext_resource path="res://scenes/main/gender_group.tres" type="ButtonGroup" id=10]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 10.0
@@ -217,7 +218,14 @@ margin_right = 618.0
 margin_bottom = 627.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
-custom_styles/bg = SubResource( 2 )
+custom_styles/bg = SubResource( 1 )
+
+[node name="GridContainer" type="GridContainer" parent="HBox/MarCon/Options/ItemScroll"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 10.0
+margin_bottom = 10.0
+columns = 4
 
 [node name="Buttons" type="HBoxContainer" parent="HBox/MarCon/Options"]
 margin_top = 635.0
@@ -247,6 +255,18 @@ mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Credits & Info"
 
+[node name="Credits" parent="." instance=ExtResource( 4 )]
+
+[node name="ColorPop" type="PopupPanel" parent="."]
+margin_right = 700.0
+margin_bottom = 500.0
+
+[node name="ColorPicker" parent="ColorPop" instance=ExtResource( 2 )]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+
 [node name="FileDialog" type="FileDialog" parent="."]
 margin_right = 700.0
 margin_bottom = 560.0
@@ -261,8 +281,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Credits" parent="." instance=ExtResource( 4 )]
-
 [node name="WaitPop" type="PopupPanel" parent="."]
 margin_right = 480.0
 margin_bottom = 270.0
@@ -276,10 +294,10 @@ __meta__ = {
 [node name="WaitLabel" type="Label" parent="WaitPop"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
 text = "Generating image..."
 align = 1
 valign = 1

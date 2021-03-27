@@ -34,6 +34,8 @@ onready var wait_label: Label = $WaitPop/WaitLabel
 onready var item_scroll := $HBox/MarCon/Options/ItemScroll
 onready var item_options := $HBox/MarCon/Options/HBox/Dropdowns/ItemOptions
 onready var color_box: HBoxContainer = $HBox/MarCon/Options/HBox/ColorPanel/ColorBox
+onready var color_pop := $ColorPop
+onready var color_picker := $ColorPop/ColorPicker
 
 
 func _ready() -> void:
@@ -41,6 +43,7 @@ func _ready() -> void:
 	set_item_option_button()
 	modulate_sprites()
 	connect_credits()
+	connect_color_picker()
 	make_items()
 	request_perms_android()
 
@@ -74,6 +77,10 @@ func connect_credits():
 	$HBox/MarCon/Options/Buttons/Credits.connect("pressed", $Credits, "popup_centered")
 
 
+func connect_color_picker():
+	color_picker.connect("color_changed", self, "on_color_picker_color_changed")
+
+
 func make_items():
 	for i in Genders.size():
 		for option in OPTION_GROUPS:
@@ -99,6 +106,8 @@ func on_item_option_selected(index:int) -> void:
 func on_color_rect_gui_input(event:InputEvent, i:int):
 	if event is InputEventMouseButton and not event.pressed and event.button_index == BUTTON_LEFT:
 		cur_color = i
+		color_pop.popup_centered()
+		color_picker.update_color(cur_colors[i])
 	
 
 func on_color_picker_color_changed(color:Color):

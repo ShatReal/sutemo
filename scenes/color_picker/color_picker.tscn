@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://theme/images/icon_color_pick.png" type="Texture" id=1]
+[ext_resource path="res://scenes/color_picker/color_picker.gd" type="Script" id=2]
+[ext_resource path="res://scenes/color_picker/sv.gd" type="Script" id=3]
+[ext_resource path="res://scenes/color_picker/hue.gd" type="Script" id=4]
+[ext_resource path="res://scenes/color_picker/screen_pick.gd" type="Script" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float hue: hint_range(0.0, 1.0);
+
+//  Function from Iñigo Quiles
+//  https://www.shadertoy.com/view/MsS3Wc
+vec3 hsv2rgb( in vec3 c ){
+    vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),
+                             6.0)-3.0)-1.0,
+                     0.0,
+                     1.0 );
+    rgb = rgb*rgb*(3.0-2.0*rgb);
+    return c.z * mix(vec3(1.0), rgb, c.y);
+}
+
+void fragment () {
+	COLOR = vec4(hsv2rgb(vec3(hue, UV.x, 1.0 - UV.y)), 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/hue = 0.0
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+//  Function from Iñigo Quiles
+//  https://www.shadertoy.com/view/MsS3Wc
+vec3 hsv2rgb( in vec3 c ){
+    vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),
+                             6.0)-3.0)-1.0,
+                     0.0,
+                     1.0 );
+    rgb = rgb*rgb*(3.0-2.0*rgb);
+    return c.z * mix(vec3(1.0), rgb, c.y);
+}
+
+void fragment() {
+	COLOR = vec4(hsv2rgb(vec3(UV.y, 1.0, 1.0)), 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[node name="ColorPicker" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Top" type="HBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 636.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="SaturationValue" type="ColorRect" parent="Top"]
+material = SubResource( 2 )
+margin_right = 1177.0
+margin_bottom = 636.0
+mouse_default_cursor_shape = 3
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 12.0
+script = ExtResource( 3 )
+
+[node name="Hue" type="ColorRect" parent="Top"]
+material = SubResource( 4 )
+margin_left = 1181.0
+margin_right = 1280.0
+margin_bottom = 636.0
+size_flags_horizontal = 3
+script = ExtResource( 4 )
+
+[node name="Bottom" type="HBoxContainer" parent="."]
+margin_top = 640.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_vertical = 3
+
+[node name="Current" type="ColorRect" parent="Bottom"]
+margin_right = 390.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="Selected" type="ColorRect" parent="Bottom"]
+margin_left = 394.0
+margin_right = 784.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="LineEdit" type="LineEdit" parent="Bottom"]
+margin_left = 788.0
+margin_right = 1178.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+placeholder_text = "Hex #"
+caret_blink = true
+
+[node name="ScreenPick" type="Button" parent="Bottom"]
+margin_left = 1182.0
+margin_right = 1280.0
+margin_bottom = 80.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+toggle_mode = true
+icon = ExtResource( 1 )
+clip_text = true
+align = 0
+expand_icon = true
+script = ExtResource( 5 )
+[connection signal="current_sv_changed" from="Top/SaturationValue" to="." method="on_current_sv_changed"]
+[connection signal="selected_sv_changed" from="Top/SaturationValue" to="." method="on_selected_sv_changed"]
+[connection signal="current_hue_changed" from="Top/Hue" to="." method="on_current_hue_changed"]
+[connection signal="selected_hue_changed" from="Top/Hue" to="." method="on_selected_hue_changed"]
+[connection signal="text_entered" from="Bottom/LineEdit" to="." method="on_line_edit_text_entered"]
+[connection signal="screen_color_hovered" from="Bottom/ScreenPick" to="." method="on_screen_color_hovered"]
+[connection signal="screen_color_picked" from="Bottom/ScreenPick" to="." method="on_screen_color_picked"]
