@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3
+## 1.4
 - Changed default cursor of color-custom boxes to pointing hand.
 - Added licenses to credits screen.
 - Changed default cursor of color picker's children.
@@ -15,3 +15,5 @@
 - Refactored a bunch of code
     - Switched from using dictionaries to enums, which apparently are also dictionaries so I didn't reallly switch I guess
 - Made credits better
+- Changed f/m option to toggle buttons instead of option button
+- Custom color picker

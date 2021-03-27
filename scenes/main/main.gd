@@ -50,9 +50,9 @@ func _ready() -> void:
 	set_item_option_button()
 	connect_credits()
 	connect_color_picker()
+	init_cur_items()
 	load_items()
 	make_items()
-	init_cur_items()
 	request_perms_android()
 
 
@@ -80,17 +80,21 @@ func connect_color_picker():
 	color_picker.connect("color_changed", self, "on_color_picker_color_changed")
 
 
+func init_cur_items():
+	cur_items.resize(OPTION_GROUPS.size())
+	cur_items[1] = 0
+
+
 func load_items():
 	var base_path = "res://sprites/"
 	var dir = Directory.new()
 	dir.open(base_path)
 	var genders = []
 	dir.list_dir_begin()
-	dir.get_next()
-	dir.get_next()
 	var file_name = dir.get_next()
 	while file_name != "":
-		genders.append(file_name)
+		if not file_name.begins_with("."):
+			genders.append(file_name)
 		file_name = dir.get_next()
 	var i = 0
 	for gender in genders:
@@ -99,11 +103,10 @@ func load_items():
 		dir.change_dir(gender_path)
 		dir.list_dir_begin()
 		var layers = []
-		dir.get_next()
-		dir.get_next()
 		file_name = dir.get_next()
 		while file_name != "":
-			layers.append(file_name)
+			if not file_name.begins_with("."):
+				layers.append(file_name)
 			file_name = dir.get_next()
 		var j = 0
 		for layer in layers:
@@ -112,11 +115,10 @@ func load_items():
 			dir.change_dir(layer_path)
 			dir.list_dir_begin()
 			var items = []
-			dir.get_next()
-			dir.get_next()
 			file_name = dir.get_next()
 			while file_name != "":
-				items.append(file_name)
+				if not file_name.begins_with("."):
+					items.append(file_name)
 				file_name = dir.get_next()
 			var k = 0
 			for item in items:
@@ -125,11 +127,9 @@ func load_items():
 				dir.change_dir(item_path)
 				dir.list_dir_begin()
 				var item_layers = []
-				dir.get_next()
-				dir.get_next()
 				file_name = dir.get_next()
 				while file_name != "":
-					if file_name.ends_with(".import"):
+					if not file_name.begins_with(".") and file_name.ends_with(".import"):
 						item_layers.append(file_name.replace(".import", ""))
 					file_name = dir.get_next()
 				for item_layer in item_layers:
@@ -161,8 +161,10 @@ func make_items():
 				texture_rect.add_to_group("hair")
 			elif OPTION_GROUPS[cur_option] == "eyes" and node_name == "Base":
 				texture_rect.add_to_group("eye")
-		item_instance.get_node("Control/Static").add_to_group("item")
+		item_instance.add_to_group("item")
 		item_instance.get_node("Control/Static").connect("gui_input", self, "on_item_pressed", [i, item_instance])
+		if cur_items[cur_option] == i:
+			item_instance.get_node("Control/Checkmark").show()
 		item_grid.add_child(item_instance)
 	modulate_sprites()
 
@@ -178,11 +180,6 @@ func modulate_color(i):
 	color_rects.append(color_rect)
 	for node in get_tree().get_nodes_in_group(COLOR_OPTIONS[i]):
 		node.modulate = cur_colors[i]
-		
-
-func init_cur_items():
-	cur_items.resize(OPTION_GROUPS.size())
-	cur_items[1] = 0
 
 
 func request_perms_android():
@@ -225,17 +222,22 @@ func on_color_picker_color_changed(color:Color):
 
 
 func on_item_pressed(event:InputEvent, i:int, item:VBoxContainer):
-	if event.is_action_pressed("lmb"):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and not event.pressed:
 		if cur_items[cur_option] == i:
+			item.get_node("Control/Checkmark").hide()
 			cur_items[cur_option] = null
 			for layer in preview.get_child(cur_option).get_children():
 				layer.texture = null
 		else:
+			for node in get_tree().get_nodes_in_group("item"):
+				node.get_node("Control/Checkmark").hide()
+			item.get_node("Control/Checkmark").show()
 			cur_items[cur_option] = i
 			preview.get_child(cur_option).item_indices = item.item_indices
 			preview.get_child(cur_option).layer_indices = item.layer_indices
 			for layer in item.get_node("Control").get_children():
-				preview.get_child(cur_option).get_node(layer.name).texture = layer.texture
+				if not layer.name == "Checkmark":
+					preview.get_child(cur_option).get_node(layer.name).texture = layer.texture
 
 
 func on_clear_all_pressed():
@@ -248,7 +250,7 @@ func on_clear_all_pressed():
 				child_layer.texture = null
 
 
-func save_file(path:String) -> void:
+func save_file(path:String="") -> void:
 	wait_label.text = "Generating image..."
 	wait_pop.popup_centered()
 	yield(get_tree(), "idle_frame")

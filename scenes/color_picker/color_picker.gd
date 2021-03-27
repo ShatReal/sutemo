@@ -19,6 +19,9 @@ onready var line_edit := $Bottom/LineEdit
 func _ready():
 	hex_reg = RegEx.new()
 	hex_reg.compile(REGEX_STR)
+	if OS.get_name() == "Android":
+		line_edit.hide()
+		$Bottom/ScreenPick.hide()
 
 
 func on_current_sv_changed(sat, val):
@@ -61,10 +64,18 @@ func update_color(c):
 	cur_color = c
 	cur.color = c
 	sel.color = c
-	hue.y = c.h * hue.rect_size.y
-	hue.update()
+	hue.line.y = c.h * hue.rect_size.y
+	hue.line.update()
 	sv.material.set_shader_param("hue", c.h)
-	sv.x = c.s * sv.rect_size.x
-	sv.y = (1.0 - c.v) * sv.rect_size.y
-	sv.update()
+	sv.lines.x = c.s * sv.rect_size.x
+	sv.lines.y = (1.0 - c.v) * sv.rect_size.y
+	sv.lines.update()
 	emit_signal("color_changed", cur_color)
+
+
+func get_line_color() -> Color:
+	var line_color := cur_color
+	line_color.h = 1.0 - line_color.h
+	line_color.s = 1.0 - line_color.s
+	line_color.v = 1.0 - line_color.v
+	return line_color

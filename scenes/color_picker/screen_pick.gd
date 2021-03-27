@@ -10,7 +10,7 @@ var picking := false
 func _input(event):
 	if picking:
 		accept_event()
-		if event.is_action_pressed("lmb"):
+		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and not event.pressed:
 			emit_signal("screen_color_picked", get_screen_color(event.position))
 			pressed = false
 		elif event is InputEventMouseMotion:

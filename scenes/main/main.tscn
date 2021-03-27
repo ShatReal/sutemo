@@ -258,6 +258,7 @@ size_flags_horizontal = 3
 text = "Credits & Info"
 
 [node name="Credits" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [node name="ColorPop" type="PopupPanel" parent="."]
 margin_right = 700.0

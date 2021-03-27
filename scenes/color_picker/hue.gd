@@ -4,32 +4,26 @@ extends ColorRect
 signal current_hue_changed(hue)
 signal selected_hue_changed(hue)
 
-const SIZE := 2.0
-
-var y := 0.0
 var mouse_down := false
 
-onready var color_picker := $"../.."
+onready var line = get_child(0)
 
 
-func _draw():
-	draw_line(Vector2(0, y), Vector2(rect_size.x, y), color_picker.cur_color.contrasted(), SIZE)
-
-
-func _gui_input(event):
-	if event.is_action_pressed("lmb"):
-		mouse_down = true
-		change_cur_hue(event)
-	elif event.is_action_released("lmb"):
-		mouse_down = false
+func _gui_input(event:InputEvent):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		if event.pressed:
+			mouse_down = true
+			change_cur_hue(event.position)
+		else:
+			mouse_down = false
 	elif event is InputEventMouseMotion:
 		if mouse_down:
-			change_cur_hue(event)
+			change_cur_hue(event.position)
 		else:
 			emit_signal("selected_hue_changed", event.position.y/rect_size.y)
 		
 
-func change_cur_hue(event):
-		y = clamp(event.position.y, 0, rect_size.y)
-		update()
-		emit_signal("current_hue_changed", y/rect_size.y)
+func change_cur_hue(pos:Vector2):
+		line.y = clamp(pos.y, 0, rect_size.y)
+		line.update()
+		emit_signal("current_hue_changed", pos.y/rect_size.y)
