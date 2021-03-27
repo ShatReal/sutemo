@@ -7,31 +7,38 @@ enum Colors {SKIN, EYE, HAIR}
 
 const IMG_SIZE := Vector2(1_000, 1_200)
 const OPTION_GROUPS := [
-	["accessories", "headphones_up", "headphones_base"],
-	["glasses"],
-	["mouths"],
-	["eyes"],
-	["front_hair", "eye_cover_hair"],
-	["outfits"],
-	["neck"],
-	["blushes"],
-	["back_hair"],
+	"back_hair",
+	"body",
+	"blushes",
+	"neck",
+	"outfits",
+	"headphones_base",
+	"front_hair",
+	"eyes",
+	"mouths",
+	"glasses",
+	"eye_cover_hair",
+	"headphones_up",
+	"accessories",
 ]
 const COLOR_OPTIONS := ["skin", "eye", "hair"]
 const WAIT_POP_TIME := 2
+const ItemClass := preload("res://scenes/main/item.tscn")
 
 var cur_gender:int = Genders.FEMALE
 var cur_option:int = Options.ACCESSORIES
 var cur_colors := [Color("#fff9df"), Color("#ff8fcd"), Color("#eae4e6")]
 var color_rects := []
 var cur_color:int = Colors.SKIN
+var images := []
+var cur_items := []
 var thread: Thread
 
 onready var save_image := $SaveImage
 onready var preview := $HBox/Preview
 onready var wait_pop: PopupPanel = $WaitPop
 onready var wait_label: Label = $WaitPop/WaitLabel
-onready var item_scroll := $HBox/MarCon/Options/ItemScroll
+onready var item_grid := $HBox/MarCon/Options/PanelContainer/ItemScroll/GridContainer
 onready var item_options := $HBox/MarCon/Options/HBox/Dropdowns/ItemOptions
 onready var color_box: HBoxContainer = $HBox/MarCon/Options/HBox/ColorPanel/ColorBox
 onready var color_pop := $ColorPop
@@ -41,10 +48,11 @@ onready var color_picker := $ColorPop/ColorPicker
 func _ready() -> void:
 	determine_save_method()
 	set_item_option_button()
-	modulate_sprites()
 	connect_credits()
 	connect_color_picker()
+	load_items()
 	make_items()
+	init_cur_items()
 	request_perms_android()
 
 
@@ -61,17 +69,8 @@ func determine_save_method():
 
 func set_item_option_button():
 	for option in OPTION_GROUPS:
-		item_options.add_item(option[0].capitalize())
+		item_options.add_item(option.capitalize())
 	
-
-func modulate_sprites():
-	for i in cur_colors.size():
-		var color_rect := color_box.get_child(i).get_node("ColorRect")
-		color_rect.color = cur_colors[i]
-		color_rects.append(color_rect)
-		for node in get_tree().get_nodes_in_group(COLOR_OPTIONS[i]):
-			node.modulate = cur_colors[i]
-
 
 func connect_credits():
 	$HBox/MarCon/Options/Buttons/Credits.connect("pressed", $Credits, "popup_centered")
@@ -81,11 +80,110 @@ func connect_color_picker():
 	color_picker.connect("color_changed", self, "on_color_picker_color_changed")
 
 
+func load_items():
+	var base_path = "res://sprites/"
+	var dir = Directory.new()
+	dir.open(base_path)
+	var genders = []
+	dir.list_dir_begin()
+	dir.get_next()
+	dir.get_next()
+	var file_name = dir.get_next()
+	while file_name != "":
+		genders.append(file_name)
+		file_name = dir.get_next()
+	var i = 0
+	for gender in genders:
+		images.append([])
+		var gender_path = base_path + gender + "/"
+		dir.change_dir(gender_path)
+		dir.list_dir_begin()
+		var layers = []
+		dir.get_next()
+		dir.get_next()
+		file_name = dir.get_next()
+		while file_name != "":
+			layers.append(file_name)
+			file_name = dir.get_next()
+		var j = 0
+		for layer in layers:
+			images[i].append([])
+			var layer_path = gender_path + layer + "/"
+			dir.change_dir(layer_path)
+			dir.list_dir_begin()
+			var items = []
+			dir.get_next()
+			dir.get_next()
+			file_name = dir.get_next()
+			while file_name != "":
+				items.append(file_name)
+				file_name = dir.get_next()
+			var k = 0
+			for item in items:
+				images[i][j].append([])
+				var item_path = layer_path + item + "/"
+				dir.change_dir(item_path)
+				dir.list_dir_begin()
+				var item_layers = []
+				dir.get_next()
+				dir.get_next()
+				file_name = dir.get_next()
+				while file_name != "":
+					if file_name.ends_with(".import"):
+						item_layers.append(file_name.replace(".import", ""))
+					file_name = dir.get_next()
+				for item_layer in item_layers:
+					images[i][j][k].append(load(item_path + item_layer))
+				k += 1
+			j += 1
+		i += 1
+	dir.list_dir_end()
+
+
 func make_items():
-	for i in Genders.size():
-		for option in OPTION_GROUPS:
-			pass
-	
+	for child in item_grid.get_children():
+		child.queue_free()
+	var option_arr = images[cur_gender][cur_option]
+	for i in option_arr.size():
+		var item = option_arr[i]
+		var item_instance := ItemClass.instance()
+		item_instance.item_indices = PoolIntArray([cur_gender, cur_option, i])
+		var item_name = item[0].resource_path.split("/")[-2].substr(3).capitalize()
+		item_name = item_name.replace(" - ", "-")
+		item_instance.get_node("Label").text = item_name
+		for j in item.size():
+			var item_layer = item[j]
+			var node_name = item_layer.resource_path.get_file().replace(".png", "").capitalize()
+			var texture_rect = item_instance.get_node("Control/" + node_name)
+			item_instance.layer_indices[texture_rect.get_index()] = j
+			texture_rect.texture = item_layer
+			if "hair" in OPTION_GROUPS[cur_option] and node_name == "Base":
+				texture_rect.add_to_group("hair")
+			elif OPTION_GROUPS[cur_option] == "eyes" and node_name == "Base":
+				texture_rect.add_to_group("eye")
+		item_instance.get_node("Control/Static").add_to_group("item")
+		item_instance.get_node("Control/Static").connect("gui_input", self, "on_item_pressed", [i, item_instance])
+		item_grid.add_child(item_instance)
+	modulate_sprites()
+
+
+func modulate_sprites():
+	for i in cur_colors.size():
+		modulate_color(i)
+		
+
+func modulate_color(i):
+	var color_rect := color_box.get_child(i).get_node("ColorRect")
+	color_rect.color = cur_colors[i]
+	color_rects.append(color_rect)
+	for node in get_tree().get_nodes_in_group(COLOR_OPTIONS[i]):
+		node.modulate = cur_colors[i]
+		
+
+func init_cur_items():
+	cur_items.resize(OPTION_GROUPS.size())
+	cur_items[1] = 0
+
 
 func request_perms_android():
 	if OS.get_name() == "Android":
@@ -95,12 +193,22 @@ func request_perms_android():
 			OS.request_permissions()
 
 
-func on_gender_selected(index:int):
-	pass
+func on_gender_selected(button_pressed:bool, index:int):
+	if button_pressed:
+		cur_gender = index
+		for layer in preview.get_children():
+			for i in layer.get_child_count():
+				var tex = layer.get_child(i)
+				if tex.texture:
+					tex.texture = images[cur_gender]\
+					[layer.item_indices[1]][layer.item_indices[2]]\
+					[layer.layer_indices[i]]
+		make_items()
 
 
 func on_item_option_selected(index:int) -> void:
-	pass
+	cur_option = index
+	make_items()
 
 
 func on_color_rect_gui_input(event:InputEvent, i:int):
@@ -113,34 +221,44 @@ func on_color_rect_gui_input(event:InputEvent, i:int):
 func on_color_picker_color_changed(color:Color):
 	cur_colors[cur_color] = color
 	color_rects[cur_color].color = color
-	for node in get_tree().get_nodes_in_group(COLOR_OPTIONS[cur_color]):
-		node.modulate = cur_colors[cur_color]
+	modulate_color(cur_color)
 
 
-func on_icon_pressed(button_pressed:bool, folder:String, textures:Array):
-	pass
-
-
-func on_clear_pressed(option:String):
-	pass
+func on_item_pressed(event:InputEvent, i:int, item:VBoxContainer):
+	if event.is_action_pressed("lmb"):
+		if cur_items[cur_option] == i:
+			cur_items[cur_option] = null
+			for layer in preview.get_child(cur_option).get_children():
+				layer.texture = null
+		else:
+			cur_items[cur_option] = i
+			preview.get_child(cur_option).item_indices = item.item_indices
+			preview.get_child(cur_option).layer_indices = item.layer_indices
+			for layer in item.get_node("Control").get_children():
+				preview.get_child(cur_option).get_node(layer.name).texture = layer.texture
 
 
 func on_clear_all_pressed():
-	pass
+	for i in cur_items.size():
+		if i != 1:
+			cur_items[i] = null
+	for layer in preview.get_children():
+		if layer.name != "Body":
+			for child_layer in layer.get_children():
+				child_layer.texture = null
 
 
-func save_file(path:String="") -> void:
+func save_file(path:String) -> void:
 	wait_label.text = "Generating image..."
 	wait_pop.popup_centered()
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 	
-	var arr: Array = [path, preview]
 	if OS.get_name() == "HTML5":
-		save_image.save_file(arr)
+		save_image.save_file(path)
 	else:
 		thread = Thread.new()
-		thread.start(save_image, "save_file", arr)
+		thread.start(save_image, "save_file", path)
 
 
 func save_finished(path:String):

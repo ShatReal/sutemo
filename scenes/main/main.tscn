@@ -212,19 +212,21 @@ mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ItemScroll" type="ScrollContainer" parent="HBox/MarCon/Options"]
+[node name="PanelContainer" type="PanelContainer" parent="HBox/MarCon/Options"]
 margin_top = 142.0
 margin_right = 618.0
 margin_bottom = 627.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
-custom_styles/bg = SubResource( 1 )
+custom_styles/panel = SubResource( 1 )
 
-[node name="GridContainer" type="GridContainer" parent="HBox/MarCon/Options/ItemScroll"]
+[node name="ItemScroll" type="ScrollContainer" parent="HBox/MarCon/Options/PanelContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 10.0
-margin_bottom = 10.0
+margin_right = 608.0
+margin_bottom = 475.0
+
+[node name="GridContainer" type="GridContainer" parent="HBox/MarCon/Options/PanelContainer/ItemScroll"]
 columns = 4
 
 [node name="Buttons" type="HBoxContainer" parent="HBox/MarCon/Options"]
@@ -306,6 +308,8 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+[connection signal="toggled" from="HBox/MarCon/Options/HBox/Dropdowns/HBoxContainer/Female" to="." method="on_gender_selected" binds= [ 0 ]]
+[connection signal="toggled" from="HBox/MarCon/Options/HBox/Dropdowns/HBoxContainer/Male" to="." method="on_gender_selected" binds= [ 1 ]]
 [connection signal="item_selected" from="HBox/MarCon/Options/HBox/Dropdowns/ItemOptions" to="." method="on_item_option_selected"]
 [connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Skin/ColorRect" to="." method="on_color_rect_gui_input" binds= [ 0 ]]
 [connection signal="gui_input" from="HBox/MarCon/Options/HBox/ColorPanel/ColorBox/Eye/ColorRect" to="." method="on_color_rect_gui_input" binds= [ 1 ]]

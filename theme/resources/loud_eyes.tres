@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=30 format=2]
+[gd_resource type="Theme" load_steps=18 format=2]
 
 [ext_resource path="res://theme/fonts/roboto.tres" type="DynamicFont" id=1]
 [ext_resource path="res://theme/resources/panel_container.tres" type="StyleBox" id=2]
@@ -9,48 +9,9 @@
 [ext_resource path="res://theme/resources/button_pressed.tres" type="StyleBox" id=7]
 [ext_resource path="res://theme/resources/button_hover.tres" type="StyleBox" id=8]
 [ext_resource path="res://theme/fonts/roboto_bold.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://theme/images/grabber.png" type="Texture" id=10]
-[ext_resource path="res://theme/images/grabber_highlighted.png" type="Texture" id=11]
-[ext_resource path="res://theme/images/icon_color_pick.png" type="Texture" id=12]
-[ext_resource path="res://theme/images/icon_add.png" type="Texture" id=13]
 [ext_resource path="res://theme/images/option_arrow.png" type="Texture" id=14]
-[ext_resource path="res://theme/images/toggle_off.png" type="Texture" id=15]
-[ext_resource path="res://theme/images/toggle_on.png" type="Texture" id=16]
-[ext_resource path="res://theme/images/toggle_off_disabled.png" type="Texture" id=17]
-[ext_resource path="res://theme/images/toggle_on_disabled.png" type="Texture" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxLine" id=2]
-color = Color( 0.94902, 0.454902, 0.72549, 1 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 4
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.921569, 0.670588, 0.827451, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 4
-
-[sub_resource type="StyleBoxFlat" id=5]
-content_margin_left = 3.0
-content_margin_right = 3.0
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color( 0.568627, 0.0980392, 0.317647, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 4
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
@@ -106,30 +67,6 @@ Button/styles/focus = SubResource( 1 )
 Button/styles/hover = ExtResource( 8 )
 Button/styles/normal = ExtResource( 6 )
 Button/styles/pressed = ExtResource( 7 )
-CheckButton/icons/off = ExtResource( 15 )
-CheckButton/icons/off_disabled = ExtResource( 17 )
-CheckButton/icons/on = ExtResource( 16 )
-CheckButton/icons/on_disabled = ExtResource( 18 )
-ColorPicker/constants/h_width = 30
-ColorPicker/constants/label_width = 10
-ColorPicker/constants/margin = 4
-ColorPicker/constants/sv_height = 256
-ColorPicker/constants/sv_width = 256
-ColorPicker/icons/add_preset = ExtResource( 13 )
-ColorPicker/icons/color_hue = null
-ColorPicker/icons/color_sample = null
-ColorPicker/icons/overbright_indicator = null
-ColorPicker/icons/preset_bg = null
-ColorPicker/icons/screen_picker = ExtResource( 12 )
-HSeparator/constants/separation = 4
-HSeparator/styles/separator = SubResource( 2 )
-HSlider/icons/grabber = ExtResource( 10 )
-HSlider/icons/grabber_disabled = null
-HSlider/icons/grabber_highlight = ExtResource( 11 )
-HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource( 3 )
-HSlider/styles/grabber_area_highlight = SubResource( 4 )
-HSlider/styles/slider = SubResource( 5 )
 Label/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
 Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )

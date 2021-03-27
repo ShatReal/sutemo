@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/base.png-a2c34011267c27e5fbe6c827f09ba452.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://sprites/male/11_headphones_up/00_headphones_up/base.png"
+dest_files=[ "res://.import/base.png-a2c34011267c27e5fbe6c827f09ba452.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

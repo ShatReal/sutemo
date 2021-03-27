@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/skin.png-bde52e942640f4b9030a2be38c64e84e.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://sprites/male/12_accessories/01_sweatdrop/skin.png"
+dest_files=[ "res://.import/skin.png-bde52e942640f4b9030a2be38c64e84e.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

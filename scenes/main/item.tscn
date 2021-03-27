@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/main/item.gd" type="Script" id=1]
+
+[node name="Item" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+item_indices = PoolIntArray( 0, 0, 0 )
+layer_indices = PoolIntArray( 0, 0, 0, 0 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1280.0
+margin_bottom = 174.0
+rect_min_size = Vector2( 145, 174 )
+
+[node name="Skin" type="TextureRect" parent="Control" groups=[
+"skin",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Base" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Highlights" type="TextureRect" parent="Control"]
+modulate = Color( 1, 1, 1, 0.588235 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Static" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_top = 178.0
+margin_right = 1280.0
+margin_bottom = 192.0
+text = "Item Name"
+align = 1
+autowrap = true

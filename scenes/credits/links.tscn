@@ -8,7 +8,7 @@ content_margin_left = 10.0
 content_margin_right = 30.0
 content_margin_top = 10.0
 content_margin_bottom = 10.0
-bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+bg_color = Color( 0.960784, 0.772549, 0.917647, 1 )
 corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 
@@ -30,7 +30,6 @@ margin_bottom = 28.0
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 32.0
 margin_bottom = 14.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 18.0

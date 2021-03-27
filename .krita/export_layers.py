@@ -1,6 +1,12 @@
 from krita import *
+from pathlib import Path
+import shutil
 
-SAVE_PATH = 'C:/game_development/projects/sutemo/sprites/{}/{}/{:02d}_{}/{}.png'
+SAVE_FOLDER_PATH = 'C:/game_development/projects/sutemo/sprites/{}/{:02d}_{}/{:02d}_{}'
+SAVE_FILE_PATH = 'C:/game_development/projects/sutemo/sprites/{}/{:02d}_{}/{:02d}_{}/{}.png'
+
+path = Path('C:/game_development/projects/sutemo/sprites')
+shutil.rmtree(path)
 
 app = Krita.instance()
 exportParams = InfoObject()
@@ -18,12 +24,13 @@ for doc in documentsOpen:
     topLayers = doc.topLevelNodes()
     for layer in topLayers:
         layer.setVisible(False)
+    i = 0
     for layer in topLayers:
         if layer.type() == 'grouplayer':
             layer.setVisible(True)
             for item in layer.childNodes():
                 item.setVisible(False)
-            i = 0
+            j = 0
             for item in layer.childNodes():
                 item.setVisible(True)
                 for itemLayer in item.childNodes():
@@ -38,12 +45,14 @@ for doc in documentsOpen:
                         curFilters = eyeFilters
                     else:
                         curFilters = defaultFilters
-                    for j in range(len(filters)):
-                        filters[j].setVisible(curFilters[j])
+                    for k in range(len(filters)):
+                        filters[k].setVisible(curFilters[k])
+                    Path(SAVE_FOLDER_PATH.format(gender, i, layer.name(), j, item.name())).mkdir(parents=True, exist_ok=True)
                     doc.refreshProjection()
-                    if not doc.exportImage(SAVE_PATH.format(gender, layer.name(), i, item.name(), itemLayer.name()), exportParams):
-                        print('Failed to export ' + SAVE_PATH.format(gender, layer.name(), i, item.name(), itemLayer.name()))
+                    if not doc.exportImage(SAVE_FILE_PATH.format(gender, i, layer.name(), j, item.name(), itemLayer.name()), exportParams):
+                        print('Failed to export ' + SAVE_FILE_PATH.format(gender, i, layer.name(), j, item.name(), itemLayer.name()))
                     itemLayer.setVisible(False)
                 item.setVisible(False)
-                i += 1
+                j += 1
             layer.setVisible(False)
+            i += 1

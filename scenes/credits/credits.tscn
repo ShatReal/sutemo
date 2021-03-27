@@ -13,7 +13,6 @@
 [ext_resource path="res://icons/twitter.png" type="Texture" id=11]
 [ext_resource path="res://icons/sea_bun.png" type="Texture" id=12]
 
-
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 10.0
 content_margin_right = 10.0
@@ -27,7 +26,7 @@ content_margin_left = 10.0
 content_margin_right = 30.0
 content_margin_top = 10.0
 content_margin_bottom = 10.0
-bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+bg_color = Color( 0.960784, 0.772549, 0.917647, 1 )
 corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 
@@ -37,7 +36,7 @@ content_margin_left = 30.0
 content_margin_right = 10.0
 content_margin_top = 10.0
 content_margin_bottom = 10.0
-bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+bg_color = Color( 0.960784, 0.772549, 0.917647, 1 )
 corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 
@@ -47,11 +46,12 @@ content_margin_left = 10.0
 content_margin_right = 30.0
 content_margin_top = 10.0
 content_margin_bottom = 10.0
-bg_color = Color( 0.94902, 0.454902, 0.72549, 1 )
+bg_color = Color( 0.960784, 0.772549, 0.917647, 1 )
 corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 
 [node name="Credits" type="PopupPanel"]
+visible = true
 margin_right = 700.0
 margin_bottom = 560.0
 theme = ExtResource( 2 )
@@ -96,8 +96,8 @@ custom_styles/bg = SubResource( 1 )
 [node name="Credits" type="VBoxContainer" parent="HBox/VBoxContainer/ScrollContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 670.0
-margin_bottom = 760.0
+margin_right = 660.0
+margin_bottom = 790.0
 size_flags_horizontal = 3
 custom_constants/separation = 16
 
@@ -259,28 +259,30 @@ texture = ExtResource( 7 )
 [node name="RichTextLabel" type="RichTextLabel" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
 margin_top = 478.0
 margin_right = 650.0
-margin_bottom = 568.0
+margin_bottom = 598.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 bbcode_text = "[url=https://github.com/Pukkah/HTML5-File-Exchange-for-Godot]HTML5 File Exchange for Godot[/url] by [url=https://github.com/Pukkah]laame[/url] is licensed under [url=https://opensource.org/licenses/MIT]MIT[/url].
-Gender symbols by [url=https://twemoji.twitter.com/]Twemoji[/url] are licensed under [url=https://creativecommons.org/licenses/by/4.0/]CC BY 4.0[/url]."
+Gender symbols by [url=https://twemoji.twitter.com/]Twemoji[/url] are licensed under [url=https://creativecommons.org/licenses/by/4.0/]CC BY 4.0[/url].
+Eyedropper icon from [url=https://wishforge.itch.io/3000-free-icons]3000+ Free Icons[/url] by [url=https://wishforge.itch.io/]Wishforge[/url]."
 text = "HTML5 File Exchange for Godot by laame is licensed under MIT.
-Gender symbols by Twemoji are licensed under CC BY 4.0."
+Gender symbols by Twemoji are licensed under CC BY 4.0.
+Eyedropper icon from 3000+ Free Icons by Wishforge."
 fit_content_height = true
 
 [node name="Divider2" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
 margin_left = 236.0
-margin_top = 584.0
+margin_top = 614.0
 margin_right = 414.0
-margin_bottom = 614.0
+margin_bottom = 644.0
 size_flags_horizontal = 4
 texture = ExtResource( 7 )
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
-margin_top = 630.0
+margin_top = 660.0
 margin_right = 650.0
-margin_bottom = 750.0
+margin_bottom = 780.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true

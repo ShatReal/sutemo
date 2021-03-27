@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/highlights.png-e2826d7452a6d7627988e12d8b8e3fde.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://sprites/female/00_back_hair/02_short_3/highlights.png"
+dest_files=[ "res://.import/highlights.png-e2826d7452a6d7627988e12d8b8e3fde.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

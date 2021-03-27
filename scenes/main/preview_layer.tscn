@@ -1,11 +1,16 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/main/preview_layer.gd" type="Script" id=1]
 
 [node name="PreviewLayer" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+item_indices = PoolIntArray( 0, 0, 0 )
+layer_indices = PoolIntArray( 0, 0, 0, 0 )
 
 [node name="Skin" type="TextureRect" parent="." groups=[
 "skin",
@@ -13,7 +18,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 expand = true
-stretch_mode = 7
+stretch_mode = 6
 __meta__ = {
 "_edit_lock_": true,
 "_editor_description_": "The part of the item that is color custom to skin color."
@@ -23,18 +28,18 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 expand = true
-stretch_mode = 7
+stretch_mode = 6
 __meta__ = {
 "_edit_lock_": true,
 "_editor_description_": "The main part of the item - may be color custom or may not be."
 }
 
-[node name="Highlight" type="TextureRect" parent="."]
-self_modulate = Color( 1, 1, 1, 0.392157 )
+[node name="Highlights" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.588235 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 expand = true
-stretch_mode = 7
+stretch_mode = 6
 __meta__ = {
 "_edit_lock_": true,
 "_editor_description_": "Partially transparent texture."
@@ -44,7 +49,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 expand = true
-stretch_mode = 7
+stretch_mode = 6
 __meta__ = {
 "_edit_lock_": true,
 "_editor_description_": "The part of the item that is not color custom no matter what."

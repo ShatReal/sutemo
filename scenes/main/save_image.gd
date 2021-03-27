@@ -9,26 +9,22 @@ onready var main: Control = get_parent()
 
 func _ready() -> void:
 	if OS.get_name() == "HTML5" and OS.has_feature("JavaScript"):
-		_define_js()
+		define_js()
 
 
-func save_file(arr: Array) -> void:
-#	var start_time = OS.get_ticks_msec()
-	
-	var path: String = arr[0]
-	var sprites: Control = arr[1]
+func save_file(path:String) -> void:
 	var images: Array = []
-	for layer in sprites.get_children():
-		images.append(_get_texture_data(layer))
-		for child in layer.get_children():
-			images.append(_get_texture_data(child))
+	for layer in main.preview.get_children():
+		for texture_rect in layer.get_children():
+			var data = get_texture_data(texture_rect)
+			if data:
+				images.append(data)
 	var result_img: Image
 	for img in images:
-		if img:
-			if result_img:
-				result_img.blend_rect(img, Rect2(0, 0, img.get_width(), img.get_height()), Vector2.ZERO)
-			else:
-				result_img = img
+		if result_img:
+			result_img.blend_rect(img, Rect2(0, 0, img.get_width(), img.get_height()), Vector2.ZERO)
+		else:
+			result_img = img
 	
 	if path:
 		result_img.save_png(path)
@@ -43,15 +39,12 @@ func save_file(arr: Array) -> void:
 				dir.make_dir_recursive(save_path)
 			result_img.save_png(path)
 		else:
-			_download_image(result_img, "character_" + hash_str)
-	
-#	var end_time = OS.get_ticks_msec()
-#	print(str(end_time-start_time) + " ms")
+			download_image(result_img, "character_" + hash_str)
 	
 	main.call_deferred("save_finished", path)
 
 
-func _define_js() -> void:
+func define_js() -> void:
 	# Define JS script
 	JavaScript.eval("""
 	function download(fileName, byte) {
@@ -65,10 +58,10 @@ func _define_js() -> void:
 	""", true)
 	
 
-func _get_texture_data(texture:TextureRect) -> Image:
+func get_texture_data(texture:TextureRect) -> Image:
 	if texture.texture:
 		var i: Image = texture.texture.get_data()
-		var mod: Color = texture.self_modulate
+		var mod: Color = texture.modulate
 		if mod != Color.white:
 			i.lock()
 			for x in range(i.get_width()):
@@ -83,7 +76,7 @@ func _get_texture_data(texture:TextureRect) -> Image:
 		return null
 
 
-func _download_image(image:Image, fileName:String="export") -> void:
+func download_image(image:Image, fileName:String="export") -> void:
 	if OS.get_name() != "HTML5" or !OS.has_feature("JavaScript"):
 		return
 		
