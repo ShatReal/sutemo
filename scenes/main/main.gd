@@ -50,6 +50,7 @@ func _ready() -> void:
 	set_item_option_button()
 	connect_credits()
 	connect_color_picker()
+	connect_preview_layers()
 	init_cur_items()
 	load_items()
 	make_items()
@@ -78,6 +79,13 @@ func connect_credits():
 
 func connect_color_picker():
 	color_picker.connect("color_changed", self, "on_color_picker_color_changed")
+	
+	
+func connect_preview_layers():
+	for layer in preview.get_children():
+		layer.connect("gui_input", self, "on_preview_layer_gui_input")
+		layer.connect("mouse_entered", self, "on_preview_layer_mouse_entered", [layer])
+		layer.connect("mouse_exited", self, "on_preview_layer_mouse_exited", [layer])
 
 
 func init_cur_items():
@@ -188,6 +196,18 @@ func request_perms_android():
 		if not "android.permission.READ_EXTERNAL_STORAGE" in perms \
 		or not "android.permission.WRITE_EXTERNAL_STORAGE" in perms:
 			OS.request_permissions()
+
+
+func on_preview_layer_gui_input(event:InputEvent):
+	pass
+	
+	
+func on_preview_layer_mouse_entered(layer:Control):
+	pass
+
+
+func on_preview_layer_mouse_exited(layer:Control):
+	pass
 
 
 func on_gender_selected(button_pressed:bool, index:int):

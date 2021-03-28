@@ -3,8 +3,6 @@
 
 ## To Do
 - Use ImageMagick to make thumbnails (help)
-- Tap item on preview to change to that option or remove it if option is already selected
-- Glow outline on item on hover
 - Add more layers / options
 - Add option to move whether the eyes are displayed under the hair (advanced options?)
 - Implement saving
