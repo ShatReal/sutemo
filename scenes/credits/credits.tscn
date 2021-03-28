@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://theme/fonts/the_bold_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://theme/resources/loud_eyes.tres" type="Theme" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://icons/loud_eyes.png" type="Texture" id=10]
 [ext_resource path="res://icons/twitter.png" type="Texture" id=11]
 [ext_resource path="res://icons/sea_bun.png" type="Texture" id=12]
+[ext_resource path="res://scenes/credits/credits.gd" type="Script" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 10.0
@@ -51,10 +52,10 @@ corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 
 [node name="Credits" type="PopupPanel"]
-visible = true
 margin_right = 700.0
 margin_bottom = 560.0
 theme = ExtResource( 2 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -96,7 +97,7 @@ custom_styles/bg = SubResource( 1 )
 [node name="Credits" type="VBoxContainer" parent="HBox/VBoxContainer/ScrollContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 660.0
+margin_right = 670.0
 margin_bottom = 790.0
 size_flags_horizontal = 3
 custom_constants/separation = 16
@@ -107,44 +108,47 @@ margin_bottom = 128.0
 custom_constants/separation = 16
 
 [node name="Links" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer" instance=ExtResource( 3 )]
-margin_right = 288.0
+margin_right = 200.0
 margin_bottom = 128.0
 custom_styles/panel = SubResource( 2 )
 
 [node name="VBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links" index="0"]
-margin_right = 258.0
+margin_right = 170.0
 margin_bottom = 118.0
 
 [node name="Label" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer" index="0"]
-margin_right = 248.0
+margin_right = 160.0
 margin_bottom = 29.0
 text = "Code by Exuin"
 
 [node name="HBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer" index="1"]
 margin_top = 33.0
-margin_right = 248.0
+margin_right = 160.0
 margin_bottom = 105.0
 
 [node name="LinkButton" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer/HBoxContainer" index="0"]
 margin_right = 72.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 6 )
+link = "https://emily2.itch.io/"
 
 [node name="LinkButton2" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer/HBoxContainer" index="1"]
 margin_left = 88.0
 margin_right = 160.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 11 )
+link = "https://twitter.com/EmilyYi29675218"
 
 [node name="LinkButton3" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links/VBoxContainer/HBoxContainer" index="2"]
+visible = false
 margin_left = 176.0
 margin_right = 248.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 5 )
 
 [node name="TextureRect" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer"]
-margin_left = 304.0
-margin_right = 432.0
+margin_left = 216.0
+margin_right = 344.0
 margin_bottom = 128.0
 texture = ExtResource( 12 )
 
@@ -187,18 +191,21 @@ margin_bottom = 105.0
 margin_right = 72.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 6 )
+link = "https://sutemo.itch.io/"
 
 [node name="LinkButton2" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links/VBoxContainer/HBoxContainer" index="1"]
 margin_left = 88.0
 margin_right = 160.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 8 )
+link = "https://ko-fi.com/sutemo"
 
 [node name="LinkButton3" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer2/Links/VBoxContainer/HBoxContainer" index="2"]
 margin_left = 176.0
 margin_right = 248.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 5 )
+link = "https://www.deviantart.com/stereo-mono"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
 margin_top = 288.0
@@ -229,18 +236,21 @@ margin_bottom = 105.0
 margin_right = 72.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 6 )
+link = "https://loudeyes.itch.io/"
 
 [node name="LinkButton2" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links/VBoxContainer/HBoxContainer" index="1"]
 margin_left = 88.0
 margin_right = 160.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 9 )
+link = "https://www.patreon.com/loudeyes"
 
 [node name="LinkButton3" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3/Links/VBoxContainer/HBoxContainer" index="2"]
 margin_left = 176.0
 margin_right = 248.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 11 )
+link = "https://twitter.com/LoudEyes_"
 
 [node name="TextureRect" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer3"]
 margin_left = 304.0
@@ -263,12 +273,14 @@ margin_bottom = 598.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
-bbcode_text = "[url=https://github.com/Pukkah/HTML5-File-Exchange-for-Godot]HTML5 File Exchange for Godot[/url] by [url=https://github.com/Pukkah]laame[/url] is licensed under [url=https://opensource.org/licenses/MIT]MIT[/url].
+bbcode_text = "[center][url=https://github.com/Pukkah/HTML5-File-Exchange-for-Godot]HTML5 File Exchange for Godot[/url] by [url=https://github.com/Pukkah]laame[/url] is licensed under [url=https://opensource.org/licenses/MIT]MIT[/url].
 Gender symbols by [url=https://twemoji.twitter.com/]Twemoji[/url] are licensed under [url=https://creativecommons.org/licenses/by/4.0/]CC BY 4.0[/url].
-Eyedropper icon from [url=https://wishforge.itch.io/3000-free-icons]3000+ Free Icons[/url] by [url=https://wishforge.itch.io/]Wishforge[/url]."
+Eyedropper icon from [url=https://wishforge.itch.io/3000-free-icons]3000+ Free Icons[/url] by [url=https://wishforge.itch.io/]Wishforge[/url].
+Made with [url=https://godotengine.org/license]Godot[/url] 3.2.3.[/center]"
 text = "HTML5 File Exchange for Godot by laame is licensed under MIT.
 Gender symbols by Twemoji are licensed under CC BY 4.0.
-Eyedropper icon from 3000+ Free Icons by Wishforge."
+Eyedropper icon from 3000+ Free Icons by Wishforge.
+Made with Godot 3.2.3."
 fit_content_height = true
 
 [node name="Divider2" type="TextureRect" parent="HBox/VBoxContainer/ScrollContainer/Credits"]
@@ -289,6 +301,10 @@ bbcode_enabled = true
 bbcode_text = "You are free to use and modify any images that you make with this tool in any way that you want. Commercial use is fine as long as you are not selling the images by themselves. You can credit Sutemo for the artwork."
 text = "You are free to use and modify any images that you make with this tool in any way that you want. Commercial use is fine as long as you are not selling the images by themselves. You can credit Sutemo for the artwork."
 fit_content_height = true
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="gui_input" from="HBox/VBoxContainer/ScrollContainer" to="." method="on_scroll_container_gui_input"]
+[connection signal="meta_clicked" from="HBox/VBoxContainer/ScrollContainer/Credits/RichTextLabel" to="." method="on_meta_clicked"]
 
 [editable path="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links"]
 

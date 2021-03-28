@@ -38,7 +38,7 @@ onready var save_image := $SaveImage
 onready var preview := $HBox/Preview
 onready var wait_pop: PopupPanel = $WaitPop
 onready var wait_label: Label = $WaitPop/WaitLabel
-onready var item_grid := $HBox/MarCon/Options/PanelContainer/ItemScroll/GridContainer
+onready var item_grid := $HBox/MarCon/Options/PanelContainer/ItemScroll/ItemGrid
 onready var item_options := $HBox/MarCon/Options/HBox/Dropdowns/ItemOptions
 onready var color_box: HBoxContainer = $HBox/MarCon/Options/HBox/ColorPanel/ColorBox
 onready var color_pop := $ColorPop
@@ -248,6 +248,11 @@ func on_clear_all_pressed():
 		if layer.name != "Body":
 			for child_layer in layer.get_children():
 				child_layer.texture = null
+	if cur_option != 1:
+		for item in item_grid.get_children():
+			if item.get_node("Control/Checkmark").visible:
+				item.get_node("Control/Checkmark").hide()
+				break
 
 
 func save_file(path:String="") -> void:
@@ -274,4 +279,3 @@ func save_finished(path:String):
 		wait_label.text = "Image downloaded!"
 	yield(get_tree().create_timer(WAIT_POP_TIME), "timeout")
 	wait_pop.hide()
-

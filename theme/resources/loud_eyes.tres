@@ -13,15 +13,15 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=3]
 size = 24
 font_data = ExtResource( 9 )
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 5.0
 content_margin_right = 5.0
 bg_color = Color( 0.270588, 0.321569, 0.490196, 1 )
@@ -32,9 +32,9 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 3
 
-[sub_resource type="StyleBoxEmpty" id=10]
+[sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=7]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 10.0
@@ -86,7 +86,7 @@ LineEdit/colors/selection_color = Color( 0.270588, 0.321569, 0.490196, 1 )
 LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
-LineEdit/styles/focus = SubResource( 6 )
+LineEdit/styles/focus = SubResource( 2 )
 LineEdit/styles/normal = ExtResource( 6 )
 LineEdit/styles/read_only = null
 LinkButton/colors/font_color = Color( 0.270588, 0.321569, 0.490196, 1 )
@@ -138,7 +138,7 @@ RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1
 RichTextLabel/constants/table_hseparation = 3
 RichTextLabel/constants/table_vseparation = 3
-RichTextLabel/fonts/bold_font = SubResource( 7 )
+RichTextLabel/fonts/bold_font = SubResource( 3 )
 RichTextLabel/fonts/bold_italics_font = null
 RichTextLabel/fonts/italics_font = null
 RichTextLabel/fonts/mono_font = null
@@ -170,7 +170,7 @@ Tree/icons/select_arrow = null
 Tree/icons/unchecked = null
 Tree/icons/updown = null
 Tree/styles/bg = ExtResource( 6 )
-Tree/styles/bg_focus = SubResource( 8 )
+Tree/styles/bg_focus = SubResource( 4 )
 Tree/styles/button_pressed = ExtResource( 7 )
 Tree/styles/cursor = null
 Tree/styles/cursor_unfocused = null
@@ -189,8 +189,8 @@ VScrollBar/icons/increment_highlight = null
 VScrollBar/styles/grabber = ExtResource( 6 )
 VScrollBar/styles/grabber_highlight = ExtResource( 8 )
 VScrollBar/styles/grabber_pressed = ExtResource( 7 )
-VScrollBar/styles/scroll = SubResource( 9 )
-VScrollBar/styles/scroll_focus = SubResource( 10 )
+VScrollBar/styles/scroll = SubResource( 5 )
+VScrollBar/styles/scroll_focus = SubResource( 6 )
 WindowDialog/colors/title_color = Color( 0.270588, 0.321569, 0.490196, 1 )
 WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
@@ -199,4 +199,4 @@ WindowDialog/constants/title_height = 20
 WindowDialog/fonts/title_font = null
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 11 )
+WindowDialog/styles/panel = SubResource( 7 )

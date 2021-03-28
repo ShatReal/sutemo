@@ -1,5 +1,25 @@
 # Changelog
 
+
+## To Do
+- Use ImageMagick to make thumbnails (help)
+- Tap item on preview to change to that option or remove it if option is already selected
+- Glow outline on item on hover
+- Add more layers / options
+- Add option to move whether the eyes are displayed under the hair (advanced options?)
+- Implement saving
+
+
+## 1.5
+Done:
+- Fix broken links (whoops)
+- Implement swipe to scroll
+- Remove checkmark when using clear all button
+- Fix bob shading
+- Fix eye images colors
+- Add Godot info
+
+
 ## 1.4
 - Changed default cursor of color-custom boxes to pointing hand.
 - Added licenses to credits screen.

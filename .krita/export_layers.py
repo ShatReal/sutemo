@@ -12,15 +12,15 @@ app = Krita.instance()
 exportParams = InfoObject()
 documentsOpen = app.documents()
 
-hairFilters = [False, True, False, False]
-skinFilters = [True, False, False, True]
-eyeFilters = [False, False, True, False]
-defaultFilters = [False, False, False, False]
+hairFilters = [False, True, False, False, False]
+skinFilters = [True, False, False, True, False]
+eyeFilters = [False, False, True, False, True]
+defaultFilters = [False, False, False, False, False]
 
 for doc in documentsOpen:
     doc.setBatchmode(True)
     gender = doc.fileName().split('/')[-1].split('.')[0]
-    filters = [doc.nodeByName('lighten_skin'), doc.nodeByName('lighten_hair'), doc.nodeByName('lighten_eyes'), doc.nodeByName('pink_tint')]
+    filters = [doc.nodeByName('lighten_skin'), doc.nodeByName('lighten_hair'), doc.nodeByName('lighten_eyes'), doc.nodeByName('pink_tint'), doc.nodeByName('desaturate')]
     topLayers = doc.topLevelNodes()
     for layer in topLayers:
         layer.setVisible(False)

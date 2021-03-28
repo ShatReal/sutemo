@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/main/preview.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/color_picker/color_picker.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://theme/images/mars.png" type="Texture" id=8]
 [ext_resource path="res://scenes/main/save_image.gd" type="Script" id=9]
 [ext_resource path="res://scenes/main/gender_group.tres" type="ButtonGroup" id=10]
+[ext_resource path="res://scenes/main/item_scroll.gd" type="Script" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 10.0
@@ -225,9 +226,13 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 608.0
 margin_bottom = 475.0
+scroll_horizontal_enabled = false
+script = ExtResource( 11 )
 
-[node name="GridContainer" type="GridContainer" parent="HBox/MarCon/Options/PanelContainer/ItemScroll"]
+[node name="ItemGrid" type="GridContainer" parent="HBox/MarCon/Options/PanelContainer/ItemScroll"]
 columns = 4
+
+[node name="Tween" type="Tween" parent="HBox/MarCon/Options/PanelContainer/ItemScroll"]
 
 [node name="Buttons" type="HBoxContainer" parent="HBox/MarCon/Options"]
 margin_top = 635.0
@@ -258,7 +263,6 @@ size_flags_horizontal = 3
 text = "Credits & Info"
 
 [node name="Credits" parent="." instance=ExtResource( 4 )]
-visible = false
 
 [node name="ColorPop" type="PopupPanel" parent="."]
 margin_right = 700.0
