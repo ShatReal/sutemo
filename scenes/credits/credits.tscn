@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://theme/fonts/the_bold_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://theme/resources/loud_eyes.tres" type="Theme" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://icons/twitter.png" type="Texture" id=11]
 [ext_resource path="res://icons/sea_bun.png" type="Texture" id=12]
 [ext_resource path="res://scenes/credits/credits.gd" type="Script" id=13]
+[ext_resource path="res://scenes/main/item_scroll.gd" type="Script" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 10.0
@@ -93,12 +94,13 @@ margin_right = 680.0
 margin_bottom = 540.0
 size_flags_vertical = 3
 custom_styles/bg = SubResource( 1 )
+script = ExtResource( 14 )
 
 [node name="Credits" type="VBoxContainer" parent="HBox/VBoxContainer/ScrollContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 670.0
-margin_bottom = 790.0
+margin_bottom = 820.0
 size_flags_horizontal = 3
 custom_constants/separation = 16
 
@@ -302,8 +304,7 @@ bbcode_text = "You are free to use and modify any images that you make with this
 text = "You are free to use and modify any images that you make with this tool in any way that you want. Commercial use is fine as long as you are not selling the images by themselves. You can credit Sutemo for the artwork."
 fit_content_height = true
 
-[node name="Tween" type="Tween" parent="."]
-[connection signal="gui_input" from="HBox/VBoxContainer/ScrollContainer" to="." method="on_scroll_container_gui_input"]
+[node name="Tween" type="Tween" parent="HBox/VBoxContainer/ScrollContainer"]
 [connection signal="meta_clicked" from="HBox/VBoxContainer/ScrollContainer/Credits/RichTextLabel" to="." method="on_meta_clicked"]
 
 [editable path="HBox/VBoxContainer/ScrollContainer/Credits/HBoxContainer/Links"]

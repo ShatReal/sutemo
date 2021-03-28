@@ -7,6 +7,8 @@ SAVE_FILE_PATH = 'C:/game_development/projects/sutemo/sprites/{}/{:02d}_{}/{:02d
 
 path = Path('C:/game_development/projects/sutemo/sprites')
 shutil.rmtree(path)
+path = PATH('C:/game_development/projects/sutemo/.import')
+shutil.rmtree(path)
 
 app = Krita.instance()
 exportParams = InfoObject()
