@@ -8,8 +8,14 @@
 - Implement saving
 
 
-## 1.5
-Done:
+## 1.4.2
+- Fixed female uniform 3 base
+- Failed to use viewports
+- Add 32-bit windows export
+- Started using butler for itch.io files
+
+
+## 1.4.1
 - Fix broken links (whoops)
 - Implement swipe to scroll
 - Remove checkmark when using clear all button
@@ -18,7 +24,7 @@ Done:
 - Add Godot info
 
 
-## 1.4
+## 1.4.0
 - Changed default cursor of color-custom boxes to pointing hand.
 - Added licenses to credits screen.
 - Changed default cursor of color picker's children.
