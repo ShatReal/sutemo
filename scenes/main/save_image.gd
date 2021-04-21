@@ -56,7 +56,7 @@ func define_js() -> void:
 		link.click();
 	};
 	""", true)
-	
+
 
 func get_texture_data(texture:TextureRect) -> Image:
 	if texture.texture:
