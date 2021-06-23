@@ -230,6 +230,10 @@ scroll_horizontal_enabled = false
 script = ExtResource( 11 )
 
 [node name="ItemGrid" type="GridContainer" parent="HBox/MarCon/Options/PanelContainer/ItemScroll"]
+margin_right = 598.0
+margin_bottom = 465.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 4
 
 [node name="Tween" type="Tween" parent="HBox/MarCon/Options/PanelContainer/ItemScroll"]
@@ -240,21 +244,22 @@ margin_right = 618.0
 margin_bottom = 700.0
 
 [node name="Clear" type="Button" parent="HBox/MarCon/Options/Buttons"]
-margin_right = 146.0
+margin_right = 203.0
 margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Clear All"
 
 [node name="Save" type="Button" parent="HBox/MarCon/Options/Buttons"]
-margin_left = 150.0
-margin_right = 296.0
+margin_left = 207.0
+margin_right = 410.0
 margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Save"
 
 [node name="Load" type="Button" parent="HBox/MarCon/Options/Buttons"]
+visible = false
 margin_left = 300.0
 margin_right = 446.0
 margin_bottom = 65.0
@@ -263,8 +268,8 @@ size_flags_horizontal = 3
 text = "Load"
 
 [node name="Credits" type="Button" parent="HBox/MarCon/Options/Buttons"]
-margin_left = 450.0
-margin_right = 617.0
+margin_left = 414.0
+margin_right = 618.0
 margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -273,9 +278,11 @@ text = "Credits & Info"
 [node name="Credits" parent="." instance=ExtResource( 4 )]
 
 [node name="ColorPop" type="PopupPanel" parent="."]
-visible = true
 margin_right = 700.0
 margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorPicker" parent="ColorPop" instance=ExtResource( 2 )]
 margin_left = 10.0

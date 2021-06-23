@@ -33,6 +33,11 @@ var cur_color:int = Colors.SKIN
 var images := []
 var cur_items := []
 var thread: Thread
+var save_info := {
+	"gender": Genders.FEMALE,
+	"layers": [],
+}
+
 
 onready var save_image := $SaveImage
 onready var preview := $HBox/Preview
@@ -54,6 +59,8 @@ func _ready() -> void:
 	load_items()
 	make_items()
 	request_perms_android()
+	yield(get_tree(), "idle_frame")
+	_set_grid_sep()
 
 
 func determine_save_method():
@@ -188,6 +195,13 @@ func request_perms_android():
 		if not "android.permission.READ_EXTERNAL_STORAGE" in perms \
 		or not "android.permission.WRITE_EXTERNAL_STORAGE" in perms:
 			OS.request_permissions()
+
+
+func _set_grid_sep() -> void:
+	item_grid.set(
+		"custom_constants/hseparation",
+		(item_grid.rect_size.x - 145*4) / 3
+	)
 
 
 func on_gender_selected(button_pressed:bool, index:int):

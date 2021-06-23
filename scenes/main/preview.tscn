@@ -63,11 +63,7 @@ texture = ExtResource( 2 )
 [node name="Accessories" parent="." instance=ExtResource( 1 )]
 
 [editable path="BackHair"]
-
 [editable path="Body"]
-
 [editable path="FrontHair"]
-
 [editable path="Eyes"]
-
 [editable path="EyeCoverHair"]
