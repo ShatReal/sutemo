@@ -63,20 +63,62 @@ __meta__ = {
 
 [node name="Top" type="HBoxContainer" parent="."]
 margin_right = 1280.0
-margin_bottom = 636.0
+margin_bottom = 79.0
+size_flags_vertical = 3
+
+[node name="Current" type="ColorRect" parent="Top"]
+margin_right = 390.0
+margin_bottom = 79.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="Selected" type="ColorRect" parent="Top"]
+margin_left = 394.0
+margin_right = 784.0
+margin_bottom = 79.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="LineEdit" type="LineEdit" parent="Top"]
+margin_left = 788.0
+margin_right = 1178.0
+margin_bottom = 79.0
+focus_mode = 1
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+placeholder_text = "Hex #"
+caret_blink = true
+
+[node name="ScreenPick" type="Button" parent="Top"]
+margin_left = 1182.0
+margin_right = 1280.0
+margin_bottom = 79.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+toggle_mode = true
+icon = ExtResource( 1 )
+clip_text = true
+align = 0
+expand_icon = true
+script = ExtResource( 5 )
+
+[node name="Bottom" type="HBoxContainer" parent="."]
+margin_top = 83.0
+margin_right = 1280.0
+margin_bottom = 720.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 8.0
 
-[node name="SaturationValue" type="ColorRect" parent="Top"]
+[node name="SaturationValue" type="ColorRect" parent="Bottom"]
 material = SubResource( 2 )
 margin_right = 1177.0
-margin_bottom = 636.0
+margin_bottom = 637.0
 mouse_default_cursor_shape = 3
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 12.0
 script = ExtResource( 3 )
 
-[node name="Lines" type="Control" parent="Top/SaturationValue"]
+[node name="Lines" type="Control" parent="Bottom/SaturationValue"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -86,15 +128,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hue" type="ColorRect" parent="Top"]
+[node name="Hue" type="ColorRect" parent="Bottom"]
 material = SubResource( 4 )
 margin_left = 1181.0
 margin_right = 1280.0
-margin_bottom = 636.0
+margin_bottom = 637.0
 size_flags_horizontal = 3
 script = ExtResource( 4 )
 
-[node name="Line" type="Control" parent="Top/Hue"]
+[node name="Line" type="Control" parent="Bottom/Hue"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -104,51 +146,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bottom" type="HBoxContainer" parent="."]
-margin_top = 640.0
-margin_right = 1280.0
-margin_bottom = 720.0
-size_flags_vertical = 3
-
-[node name="Current" type="ColorRect" parent="Bottom"]
-margin_right = 390.0
-margin_bottom = 80.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.0
-
-[node name="Selected" type="ColorRect" parent="Bottom"]
-margin_left = 394.0
-margin_right = 784.0
-margin_bottom = 80.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.0
-
-[node name="LineEdit" type="LineEdit" parent="Bottom"]
-margin_left = 788.0
-margin_right = 1178.0
-margin_bottom = 80.0
-focus_mode = 1
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.0
-placeholder_text = "Hex #"
-caret_blink = true
-
-[node name="ScreenPick" type="Button" parent="Bottom"]
-margin_left = 1182.0
-margin_right = 1280.0
-margin_bottom = 80.0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 3
-toggle_mode = true
-icon = ExtResource( 1 )
-clip_text = true
-align = 0
-expand_icon = true
-script = ExtResource( 5 )
-[connection signal="current_sv_changed" from="Top/SaturationValue" to="." method="on_current_sv_changed"]
-[connection signal="selected_sv_changed" from="Top/SaturationValue" to="." method="on_selected_sv_changed"]
-[connection signal="current_hue_changed" from="Top/Hue" to="." method="on_current_hue_changed"]
-[connection signal="selected_hue_changed" from="Top/Hue" to="." method="on_selected_hue_changed"]
-[connection signal="text_entered" from="Bottom/LineEdit" to="." method="on_line_edit_text_entered"]
-[connection signal="screen_color_hovered" from="Bottom/ScreenPick" to="." method="on_screen_color_hovered"]
-[connection signal="screen_color_picked" from="Bottom/ScreenPick" to="." method="on_screen_color_picked"]
+[connection signal="text_entered" from="Top/LineEdit" to="." method="on_line_edit_text_entered"]
+[connection signal="screen_color_hovered" from="Top/ScreenPick" to="." method="on_screen_color_hovered"]
+[connection signal="screen_color_picked" from="Top/ScreenPick" to="." method="on_screen_color_picked"]
+[connection signal="current_sv_changed" from="Bottom/SaturationValue" to="." method="on_current_sv_changed"]
+[connection signal="selected_sv_changed" from="Bottom/SaturationValue" to="." method="on_selected_sv_changed"]
+[connection signal="current_hue_changed" from="Bottom/Hue" to="." method="on_current_hue_changed"]
+[connection signal="selected_hue_changed" from="Bottom/Hue" to="." method="on_selected_hue_changed"]

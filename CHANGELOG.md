@@ -8,6 +8,10 @@
 - Implement saving
 
 
+## 1.4.3 - in progress
+- Add logging
+
+
 ## 1.4.2
 - Fixed female uniform 3 base
 - Failed to use viewports

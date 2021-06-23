@@ -240,23 +240,31 @@ margin_right = 618.0
 margin_bottom = 700.0
 
 [node name="Clear" type="Button" parent="HBox/MarCon/Options/Buttons"]
-margin_right = 203.0
+margin_right = 146.0
 margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 text = "Clear All"
 
 [node name="Save" type="Button" parent="HBox/MarCon/Options/Buttons"]
-margin_left = 207.0
-margin_right = 410.0
+margin_left = 150.0
+margin_right = 296.0
 margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
-text = "Save Image"
+text = "Save"
+
+[node name="Load" type="Button" parent="HBox/MarCon/Options/Buttons"]
+margin_left = 300.0
+margin_right = 446.0
+margin_bottom = 65.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+text = "Load"
 
 [node name="Credits" type="Button" parent="HBox/MarCon/Options/Buttons"]
-margin_left = 414.0
-margin_right = 618.0
+margin_left = 450.0
+margin_right = 617.0
 margin_bottom = 65.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -265,6 +273,7 @@ text = "Credits & Info"
 [node name="Credits" parent="." instance=ExtResource( 4 )]
 
 [node name="ColorPop" type="PopupPanel" parent="."]
+visible = true
 margin_right = 700.0
 margin_bottom = 500.0
 
@@ -313,6 +322,7 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
 [connection signal="toggled" from="HBox/MarCon/Options/HBox/Dropdowns/HBoxContainer/Female" to="." method="on_gender_selected" binds= [ 0 ]]
 [connection signal="toggled" from="HBox/MarCon/Options/HBox/Dropdowns/HBoxContainer/Male" to="." method="on_gender_selected" binds= [ 1 ]]
 [connection signal="item_selected" from="HBox/MarCon/Options/HBox/Dropdowns/ItemOptions" to="." method="on_item_option_selected"]

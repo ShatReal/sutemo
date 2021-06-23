@@ -9,19 +9,16 @@ var cur_color := Color.white
 var is_screen_picking := false
 var hex_reg: RegEx
 
-onready var sv := $Top/SaturationValue
-onready var hue := $Top/Hue
-onready var cur := $Bottom/Current
-onready var sel := $Bottom/Selected
-onready var line_edit := $Bottom/LineEdit
+onready var sv := $Bottom/SaturationValue
+onready var hue := $Bottom/Hue
+onready var cur := $Top/Current
+onready var sel := $Top/Selected
+onready var line_edit := $Top/LineEdit
 
 
 func _ready():
 	hex_reg = RegEx.new()
 	hex_reg.compile(REGEX_STR)
-	if OS.get_name() == "Android":
-		line_edit.hide()
-		$Bottom/ScreenPick.hide()
 
 
 func on_current_sv_changed(sat, val):
